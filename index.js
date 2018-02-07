@@ -5,7 +5,7 @@ const BroccoliPlugin = require('broccoli-plugin');
 const path = require('path');
 const MergeTrees = require('broccoli-merge-trees');
 
-class BuildTailwind extends BroccoliPlugin {
+class MyPlugin extends BroccoliPlugin {
 
   build() {
     let tailwindBinary = require.resolve('tailwindcss').replace('index.js', 'cli.js');
@@ -26,10 +26,11 @@ module.exports = {
     let trees = tree ? [ tree ] : [];
 
     if (type === 'css' && tree._annotation === "TreeMerger (stylesAndVendor)") {
-      let newTree = new BuildTailwind([ tree ]);
+      let newTree = new MyPlugin([ tree ]);
       trees.push(newTree);
     }
 
     return new MergeTrees(trees);
   }
+
 };
