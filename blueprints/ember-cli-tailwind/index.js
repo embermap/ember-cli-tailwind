@@ -16,12 +16,22 @@ module.exports = {
   },
 
   _insertImportIntoAppCss: function() {
-    var text = "@import 'tailwind.css'";
-    var line = `${text};\n\n`
-    var contents = fs.readFileSync('app/styles/app.css', 'utf8');
+    var text;
+    var appStylesFile;
+
+    if (fs.existsSync('app/styles/app.css')) {
+      appStylesFile = 'app.css';
+      text = "@import 'tailwind.css'";
+
+    } else if (fs.existsSync('app/styles/app.scss')) {
+      appStylesFile = 'app.scss';
+      text = "@import 'tailwind'";
+    }
+
+    var contents = fs.readFileSync(`app/styles/${appStylesFile}`, 'utf8');
 
     if (!contents.match(text)) {
-      fs.writeFileSync('app/styles/app.css', `${line}${contents}`, 'utf8');
+      fs.writeFileSync(`app/styles/${appStylesFile}`, `${text};\n\n${contents}`, 'utf8');
     }
 
     // Couldn't get this to insert the text at the top of file

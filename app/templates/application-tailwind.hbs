@@ -1,0 +1,139 @@
+<div class="etw-px-4 etw-my-8 etw-max-w-3xl etw-mx-auto etw-font-sans">
+  <div class='etw-flex etw-mt-6'>
+    <div class='etw-w-3/4 etw-pr-6'>
+      <h1 class='etw-pt-8 etw-text-3xl etw-font-bold'>Your Tailwind styles</h1>
+      <p class='etw-mt-3 etw-mb-4 etw-text-lg'>A reference for every generated class in your app.</p>
+
+      {{etw/module-section
+        title='Border radius'
+        codeSnippets=(array '.rounded{-side?}{-size?}')
+        moduleStyles=moduleStyles.borderRadius
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Borders'
+        codeSnippets=(array '.border{-side?}{-width?}')
+        moduleStyles=moduleStyles.borderWidths
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Colors'
+        codeSnippets=(array '.text-{color}' '.bg-{color}' '.border-{color}')
+        moduleStyles=moduleStyles.colors
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Font weights'
+        codeSnippets=(array '.font-{weight}')
+        moduleStyles=moduleStyles.fontWeights
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Height'
+        codeSnippets=(array '.h-{size}')
+        moduleStyles=moduleStyles.height
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Letter spacing'
+        codeSnippets=(array '.tracking-{size}')
+        moduleStyles=moduleStyles.letterSpacing
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Line height'
+        codeSnippets=(array '.leading-{size}')
+        moduleStyles=moduleStyles.lineHeight
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Margin'
+        codeSnippets=(array '.m{side?}-{size}')
+        moduleStyles=moduleStyles.margin
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Max height'
+        codeSnippets=(array '.max-h-{size}')
+        moduleStyles=moduleStyles.maxHeight
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Max width'
+        codeSnippets=(array '.max-w-{size}')
+        moduleStyles=moduleStyles.maxWidth
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Min height'
+        codeSnippets=(array '.min-h-{size}')
+        moduleStyles=moduleStyles.minHeight
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Min width'
+        codeSnippets=(array '.min-w-{size}')
+        moduleStyles=moduleStyles.minWidth
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Negative margin'
+        codeSnippets=(array '.-m{side?}-{size}')
+        moduleStyles=moduleStyles.negativeMargin
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Opacity'
+        codeSnippets=(array '.opacity-{name}')
+        moduleStyles=moduleStyles.opacity
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Padding'
+        codeSnippets=(array '.p{side?}-{size}')
+        moduleStyles=moduleStyles.padding
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Shadows'
+        codeSnippets=(array '.shadow-{size?}')
+        moduleStyles=moduleStyles.shadows
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='SVG fill'
+        codeSnippets=(array '.fill-{name}')
+        moduleStyles=moduleStyles.svgFill
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='SVG stroke'
+        codeSnippets=(array '.stroke-{name}')
+        moduleStyles=moduleStyles.svgStroke
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Text sizes'
+        codeSnippets=(array '.text-{size}')
+        moduleStyles=moduleStyles.textSizes
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Width'
+        codeSnippets=(array '.w-{size}')
+        moduleStyles=moduleStyles.width
+        onSelect=(action (mut selectedModuleStyle))}}
+
+      {{etw/module-section
+        title='Z index'
+        codeSnippets=(array '.z-{index}')
+        moduleStyles=moduleStyles.zIndex
+        onSelect=(action (mut selectedModuleStyle))}}
+
+    </div>
+
+    <div class='etw-w-1/4 etw-relative'>
+      {{etw/module-style-detail moduleStyle=selectedModuleStyle}}
+    </div>
+  </div>
+</div>

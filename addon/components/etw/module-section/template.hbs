@@ -1,0 +1,17 @@
+<section>
+  <h2 class='etw-pt-8 etw-mb-6 etw-text-lg etw-font-bold'>{{title}}</h2>
+
+  <ul class='etw-list-reset etw-leading-normal'>
+    {{#each codeSnippets as |snippet|}}
+      <li><code>{{snippet}}</code></li>
+    {{/each}}
+  </ul>
+
+  <div class="etw-mt-8 etw-flex etw-flex-wrap">
+    {{#each moduleStyles as |moduleStyle|}}
+      <a {{action onSelect moduleStyle}} class='etw-mb-8 etw-w-1/5 etw-p-2'>
+        {{etw/module-style-example moduleStyle=moduleStyle}}
+      </a>
+    {{/each}}
+  </div>
+</section>
