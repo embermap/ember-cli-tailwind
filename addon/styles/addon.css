@@ -1,0 +1,6 @@
+.etw-width-inherit {
+  width: inherit;
+}
+.etw-transition {
+  transition: all 0.15s;
+}
