@@ -1,29 +1,29 @@
 'use strict';
 /*eslint-env node */
 
-let colors = require('./colors');
-let screens = require('./screens');
-let fonts = require('./fonts');
-let textSizes = require('./text-sizes');
-let fontWeights = require('./font-weights');
-let leading = require('./line-height');
-let tracking = require('./letter-spacing');
-let borderWidths = require('./border-widths');
-let borderRadius = require('./border-radius');
-let width = require('./width');
-let height = require('./height');
-let minWidth = require('./min-width');
-let minHeight = require('./min-height');
-let maxWidth = require('./max-width');
-let maxHeight = require('./max-height');
-let padding = require('./padding');
-let margin = require('./margin');
-let negativeMargin = require('./negative-margin');
-let shadows = require('./shadows');
-let zIndex = require('./z-index');
-let opacity = require('./opacity');
-let svgFill = require('./svg-fill');
-let svgStroke = require('./svg-stroke');
+let colors = require('../colors');
+let screens = require('../screens');
+let fonts = require('../fonts');
+let textSizes = require('../text-sizes');
+let fontWeights = require('../font-weights');
+let leading = require('../line-height');
+let tracking = require('../letter-spacing');
+let borderWidths = require('../border-widths');
+let borderRadius = require('../border-radius');
+let width = require('../width');
+let height = require('../height');
+let minWidth = require('../min-width');
+let minHeight = require('../min-height');
+let maxWidth = require('../max-width');
+let maxHeight = require('../max-height');
+let padding = require('../padding');
+let margin = require('../margin');
+let negativeMargin = require('../negative-margin');
+let shadows = require('../shadows');
+let zIndex = require('../z-index');
+let opacity = require('../opacity');
+let svgFill = require('../svg-fill');
+let svgStroke = require('../svg-stroke');
 
 module.exports = {
 

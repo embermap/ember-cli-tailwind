@@ -69,19 +69,18 @@ module.exports = {
   treeForApp(tree) {
     let trees = [ tree ];
 
-    let tailwindModulesPath = path.join(this.parent.root, 'app', 'styles', 'tailwind');
+    let tailwindModulesPaths = [ this.parent.root ];
+    if (this.project.isEmberCLIAddon()) {
+      tailwindModulesPaths = tailwindModulesPaths.concat([ 'tests', 'dummy' ]);
+    }
+    tailwindModulesPaths = tailwindModulesPaths.concat([ 'app', 'styles', 'tailwind' ]);
+    let tailwindModulesPath = path.join.apply(this, tailwindModulesPaths);
     let tailwindNodeModulesTree = new Funnel(tailwindModulesPath, {
       exclude: [ 'config' ],
       destDir: 'ember-cli-tailwind'
     });
 
     let tailwindES6Modules = new AnotherPlugin([ tailwindNodeModulesTree ]);
-    // let tailwindES6Modules = map(tailwindNodeModulesTree, function(content) {
-    //   let transformed = requireFromString(content);
-    //   // let file = require(relativePath);
-    //   console.log(transformed);
-    //   return `export default ${JSON.stringify(transformed)};`;
-    // });
     trees.push(tailwindES6Modules);
 
     return new MergeTrees(trees);
