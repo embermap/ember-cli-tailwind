@@ -17,7 +17,9 @@ const TailwindApplicationRoute = Route.extend({
 });
 
 export function initialize(appInstance) {
-  if (window.location.href.match('/tailwind')) {
+  let fastboot = appInstance.lookup('service:fastboot');
+
+  if (!fastboot.get('isFastBoot') && window.location.href.match('/tailwind')) {
     appInstance.register('route:application', TailwindApplicationRoute);
     Router.map(function() {
       this.route('tailwind');
