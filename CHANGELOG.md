@@ -1,3 +1,7 @@
+# 0.2.2
+
+Fix initializer to work in apps that don't have Fastboot installed.
+
 # 0.2.1
 
 Adds changelog.
