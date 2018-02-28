@@ -19,7 +19,9 @@
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "test:all": "ember try:each",
+    "test:fastboot": "qunit fastboot-tests"
   },
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
