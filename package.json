@@ -12,9 +12,6 @@
     "test": "tests"
   },
   "repository": "https://github.com/embermap/ember-cli-tailwind",
-  "bin": {
-    "tailwind": "./node_modules/.bin/tailwind"
-  },
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
