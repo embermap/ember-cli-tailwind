@@ -1,3 +1,7 @@
+# 0.2.3
+
+Bug fixes, CI cleanup.
+
 # 0.2.2
 
 Fix initializer to work in apps that don't have Fastboot installed.
