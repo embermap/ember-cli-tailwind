@@ -1,6 +1,6 @@
 'use strict';
 
-const execSync = require('child_process').execSync;
+const spawnSync = require('child_process').spawnSync;
 const BroccoliPlugin = require('broccoli-plugin');
 const path = require('path');
 const MergeTrees = require('broccoli-merge-trees');
@@ -25,7 +25,7 @@ class MyPlugin extends BroccoliPlugin {
     let modulesFile = path.join(tailwindPath, 'config', 'modules.css');
     let outputFile = path.join(this.outputPath, 'app', 'styles', 'tailwind.css');
 
-    execSync(`${tailwindBinary} build ${modulesFile} -c ${configFile} -o ${outputFile}`);
+    spawnSync(`"${tailwindBinary}" build ${modulesFile} -c ${configFile} -o ${outputFile}`);
   }
 }
 
