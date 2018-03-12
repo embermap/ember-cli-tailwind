@@ -25,7 +25,7 @@ class MyPlugin extends BroccoliPlugin {
     let modulesFile = path.join(tailwindPath, 'config', 'modules.css');
     let outputFile = path.join(this.outputPath, 'app', 'styles', 'tailwind.css');
 
-    spawnSync(`"${tailwindBinary}" build ${modulesFile} -c ${configFile} -o ${outputFile}`);
+    spawnSync(`${tailwindBinary}`, [`build`, `${modulesFile}`, `-c`, `${configFile}`, `-o`, `${outputFile}`]);
   }
 }
 
