@@ -1,57 +1,10 @@
 'use strict';
 
-const spawnSync = require('child_process').spawnSync;
-const BroccoliPlugin = require('broccoli-plugin');
 const path = require('path');
 const MergeTrees = require('broccoli-merge-trees');
-// const stew = require('broccoli-stew');
-// const log = stew.log;
-// const map = stew.map;
-const fs = require('fs');
 const Funnel = require('broccoli-funnel');
-const stringUtils = require("ember-cli-string-utils");
-
-class MyPlugin extends BroccoliPlugin {
-  constructor(inputNodes, memo) {
-    super(inputNodes);
-
-    this.memo = memo;
-  }
-
-  build() {
-    let tailwindBinary = require.resolve('tailwindcss').replace('index.js', 'cli.js');
-    let tailwindPath = path.join(this.inputPaths[0], 'app', 'styles', 'tailwind');
-    let configFile = path.join(tailwindPath, 'config', 'tailwind.js');
-    let modulesFile = path.join(tailwindPath, 'config', 'modules.css');
-    let outputFile = path.join(this.outputPath, 'app', 'styles', 'tailwind.css');
-
-    spawnSync(`${tailwindBinary}`, [`build`, `${modulesFile}`, `-c`, `${configFile}`, `-o`, `${outputFile}`]);
-  }
-}
-
-class AnotherPlugin extends BroccoliPlugin {
-  build() {
-    let modulesPath = path.join(this.inputPaths[0], 'ember-cli-tailwind');
-    let modules = fs.readdirSync(modulesPath);
-
-    let data = modules.reduce((data, moduleName) => {
-      let modulePath = path.join(modulesPath, moduleName)
-      let contents = require(modulePath);
-      let key = stringUtils.camelize(moduleName.replace('.js', ''));
-
-      data[key] = contents;
-
-      delete require.cache[require.resolve(modulePath)]
-
-      return data;
-    }, {});
-
-    let dataString = JSON.stringify(data);
-    let outputPath = path.join(this.outputPath, 'ember-cli-tailwind');
-    fs.mkdirSync(outputPath);
-    fs.writeFileSync(path.join(outputPath, 'modules.js'), `export default ${dataString}`);
-  }
-}
+const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
+const NodeToES6Plugin = require('./lib/node-to-es6-plugin');
 
 module.exports = {
   name: 'ember-cli-tailwind',
@@ -63,38 +16,59 @@ module.exports = {
   included() {
     this._super.included.apply(this, arguments);
 
+    // For now, we import a static pre-built version of Tailwind that's prefixed
+    // with .etw-* (for ember-tailwind), so we can build the styleguide and not conflict with other
+    // Tailwind builds.
     this.import('vendor/etw.css');
-  },
-
-  treeForApp(tree) {
-    let trees = [ tree ];
-
-    let tailwindModulesPaths = [ this.parent.root ];
-    if (this.project.isEmberCLIAddon()) {
-      tailwindModulesPaths = tailwindModulesPaths.concat([ 'tests', 'dummy' ]);
-    }
-    tailwindModulesPaths = tailwindModulesPaths.concat([ 'app', 'styles', 'tailwind' ]);
-    let tailwindModulesPath = path.join.apply(this, tailwindModulesPaths);
-    let tailwindNodeModulesTree = new Funnel(tailwindModulesPath, {
-      exclude: [ 'config' ],
-      destDir: 'ember-cli-tailwind'
-    });
-
-    let tailwindES6Modules = new AnotherPlugin([ tailwindNodeModulesTree ]);
-    trees.push(tailwindES6Modules);
-
-    return new MergeTrees(trees);
   },
 
   preprocessTree(type, tree) {
     let trees = tree ? [ tree ] : [];
 
+    // TODO: there has to be a better way to do this...
     if (type === 'css' && tree._annotation === "TreeMerger (stylesAndVendor)") {
-      let newTree = new MyPlugin([ tree ], this.memo);
-      trees.push(newTree);
+      let tailwindTree = new BuildTailwindPlugin([ tree ]);
+      trees.push(tailwindTree);
     }
 
     return new MergeTrees(trees);
+  },
+
+  treeForApp(appTree) {
+    let tailwindES6ModulesTree = this._getTailwindES6ModulesTree();
+
+    return new MergeTrees([ appTree, tailwindES6ModulesTree ]);
+  },
+
+  // Private
+
+  _getTailwindES6ModulesTree() {
+    let tailwindModulesPath = this._getTailwindModulesPath();
+    let tailwindNodeModulesTree = this._moveTailwindModules(tailwindModulesPath);
+    let tailwindES6ModulesTree = this._convertNodeModulesTreeToES6ModulesTree(tailwindNodeModulesTree);
+
+    return tailwindES6ModulesTree;
+  },
+
+  _getTailwindModulesPath() {
+    let tailwindModulesPaths = [ this.parent.root ];
+    if (this.project.isEmberCLIAddon()) {
+      tailwindModulesPaths = tailwindModulesPaths.concat([ 'tests', 'dummy' ]);
+    }
+    tailwindModulesPaths = tailwindModulesPaths.concat([ 'app', 'styles', 'tailwind' ]);
+
+    return path.join.apply(this, tailwindModulesPaths);
+  },
+
+  _moveTailwindModules(tailwindModulesPath) {
+    return new Funnel(tailwindModulesPath, {
+      exclude: [ 'config' ],
+      destDir: 'ember-cli-tailwind'
+    });
+  },
+
+  _convertNodeModulesTreeToES6ModulesTree(tree) {
+    return new NodeToES6Plugin([ tree ]);
   }
 
 };

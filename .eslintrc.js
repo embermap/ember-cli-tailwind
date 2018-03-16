@@ -21,6 +21,7 @@ module.exports = {
     {
       files: [
         'index.js',
+        'lib/**',
         'testem.js',
         'ember-cli-build.js',
         'config/**/*.js',
