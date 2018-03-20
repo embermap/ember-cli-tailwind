@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Minimum height                      https://tailwindcss.com/docs/min-height
@@ -13,7 +12,7 @@
 |
 */
 
-module.exports = {
+export default {
   '0': '0',
   'full': '100%',
   'screen': '100vh'

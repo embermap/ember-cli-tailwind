@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Margin                                  https://tailwindcss.com/docs/margin
@@ -14,7 +13,7 @@
 |
 */
 
-module.exports = {
+export default {
   'auto': 'auto',
   'px': '1px',
   '0': '0',

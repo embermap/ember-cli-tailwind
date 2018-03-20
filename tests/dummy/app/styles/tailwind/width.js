@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Width                                    https://tailwindcss.com/docs/width
@@ -19,7 +18,7 @@
 |
 */
 
-module.exports = {
+export default {
   'auto': 'auto',
   'px': '1px',
   '1': '0.25rem',

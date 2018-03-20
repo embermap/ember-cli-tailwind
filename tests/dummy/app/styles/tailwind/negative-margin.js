@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Negative margin                https://tailwindcss.com/docs/negative-margin
@@ -14,7 +13,7 @@
 |
 */
 
-module.exports = {
+export default {
   'px': '1px',
   '0': '0',
   '1': '0.25rem',

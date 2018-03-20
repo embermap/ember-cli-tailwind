@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Maximum width                        https://tailwindcss.com/docs/max-width
@@ -14,7 +13,7 @@
 |
 */
 
-module.exports = {
+export default {
   'xs': '20rem',
   'sm': '30rem',
   'md': '40rem',

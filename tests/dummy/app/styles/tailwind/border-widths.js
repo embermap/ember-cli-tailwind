@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Border widths                     https://tailwindcss.com/docs/border-width
@@ -12,7 +11,7 @@
 |
 */
 
-module.exports = {
+export default {
   default: '1px',
   '0': '0',
   '2': '2px',

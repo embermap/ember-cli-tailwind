@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Border radius                    https://tailwindcss.com/docs/border-radius
@@ -15,7 +14,7 @@
 |
 */
 
-module.exports = {
+export default {
   'none': '0',
   'sm': '.125rem',
   default: '.25rem',

@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Screens                      https://tailwindcss.com/docs/responsive-design
@@ -18,7 +17,7 @@
 |
 */
 
-module.exports = {
+export default {
   'sm': '576px',
   'md': '768px',
   'lg': '992px',

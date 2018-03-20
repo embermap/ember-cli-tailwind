@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Leading (line height)              https://tailwindcss.com/docs/line-height
@@ -11,7 +10,7 @@
 |
 */
 
-module.exports = {
+export default {
   'none': 1,
   'tight': 1.25,
   'normal': 1.5,

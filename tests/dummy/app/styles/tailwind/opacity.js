@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Opacity                                https://tailwindcss.com/docs/opacity
@@ -12,7 +11,7 @@
 |
 */
 
-module.exports = {
+export default {
   '0': '0',
   '25': '.25',
   '50': '.5',

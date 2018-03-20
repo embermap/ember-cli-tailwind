@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Tracking (letter spacing)       https://tailwindcss.com/docs/letter-spacing
@@ -11,7 +10,7 @@
 |
 */
 
-module.exports = {
+export default {
   'tight': '-0.05em',
   'normal': '0',
   'wide': '0.05em',

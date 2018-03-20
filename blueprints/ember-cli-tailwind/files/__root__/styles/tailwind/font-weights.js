@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Font weights                       https://tailwindcss.com/docs/font-weight
@@ -13,7 +12,7 @@
 |
 */
 
-module.exports = {
+export default {
   'hairline': 100,
   'thin': 200,
   'light': 300,

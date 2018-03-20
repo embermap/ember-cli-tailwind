@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Height                                  https://tailwindcss.com/docs/height
@@ -14,7 +13,7 @@
 |
 */
 
-module.exports = {
+export default {
   'auto': 'auto',
   'px': '1px',
   '1': '0.25rem',

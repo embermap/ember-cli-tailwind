@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-------------------------------------------------------------------------------
 | Colors                                    https://tailwindcss.com/docs/colors
@@ -19,7 +18,7 @@
 |
 */
 
-module.exports = {
+export default {
 
   'transparent': 'transparent',
 

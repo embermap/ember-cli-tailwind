@@ -28,10 +28,16 @@ module.exports = {
       text = "@import 'tailwind'";
     }
 
-    var contents = fs.readFileSync(`app/styles/${appStylesFile}`, 'utf8');
+    var appStylesPath = `app/styles/${appStylesFile}`;
 
-    if (!contents.match(text)) {
-      fs.writeFileSync(`app/styles/${appStylesFile}`, `${text};\n\n${contents}`, 'utf8');
+    // The import isn't necessary for addons, as tailwind will automatically
+    // be concatenated into vendor.css
+    if (fs.existsSync(appStylesPath)) {
+      var contents = fs.readFileSync(`app/styles/${appStylesFile}`, 'utf8');
+
+      if (!contents.match(text)) {
+        fs.writeFileSync(`app/styles/${appStylesFile}`, `${text};\n\n${contents}`, 'utf8');
+      }
     }
 
     // Couldn't get this to insert the text at the top of file

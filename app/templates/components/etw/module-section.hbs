@@ -9,9 +9,7 @@
 
   <div class="etw-mt-8 etw-flex etw-flex-wrap">
     {{#each moduleStyles as |moduleStyle|}}
-      <a {{action onSelect moduleStyle}} class='etw-mb-8 etw-w-1/5 etw-p-2'>
-        {{etw/module-style-example moduleStyle=moduleStyle}}
-      </a>
+      {{etw/module-style-example moduleStyle=moduleStyle}}
     {{/each}}
   </div>
 </section>
