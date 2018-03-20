@@ -13,6 +13,8 @@ module.exports = {
   included(includer) {
     this._super.included.apply(this, arguments);
 
+    this.import('vendor/etw.css');
+
     if (includer.trees) {
       this.projectType = 'app';
       this.tailwindInputPath = this._getInputPath(this.project.root, includer.trees.styles);
@@ -22,19 +24,19 @@ module.exports = {
     }
   },
 
-  treeForApp(tree) {
+  treeForApp(app) {
+    let trees = [ app ];
+
     // Ember CLI doesn't process .js files in app/styles by default
     // (Weirdly, it does process them in addon/styles, so this is only needed for apps)
     if (this.projectType === 'app' && this.tailwindInputPath) {
-      return new MergeTrees([
-        tree,
-        new Funnel(this.tailwindInputPath, {
-          destDir: 'styles'
-        })
-      ]);
-    } else {
-      return tree;
+      let tailwindModules = new Funnel(this.tailwindInputPath, {
+        destDir: 'styles'
+      })
+      trees.push(tailwindModules);
     }
+
+    return new MergeTrees(trees);
   },
 
   preprocessTree(type, tree) {
