@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Minimum width                        https://tailwindcss.com/docs/min-width
@@ -13,7 +12,7 @@
 |
 */
 
-module.exports = {
+export default {
   '0': '0',
   'full': '100%',
 };

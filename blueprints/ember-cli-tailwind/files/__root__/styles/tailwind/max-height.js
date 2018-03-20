@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Maximum height                      https://tailwindcss.com/docs/max-height
@@ -13,7 +12,7 @@
 |
 */
 
-module.exports = {
+export default {
   'full': '100%',
   'screen': '100vh',
 };

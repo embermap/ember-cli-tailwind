@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Fonts                                    https://tailwindcss.com/docs/fonts
@@ -17,7 +16,7 @@
 |
 */
 
-module.exports = {
+export default {
   'sans': [
     'system-ui',
     'BlinkMacSystemFont',

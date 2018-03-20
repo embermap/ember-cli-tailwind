@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Text sizes                         https://tailwindcss.com/docs/text-sizing
@@ -18,7 +17,7 @@
 |
 */
 
-module.exports = {
+export default {
   'xs': '.75rem',     // 12px
   'sm': '.875rem',    // 14px
   'base': '1rem',     // 16px

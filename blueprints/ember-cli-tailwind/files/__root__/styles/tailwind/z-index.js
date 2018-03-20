@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | Z-index                                https://tailwindcss.com/docs/z-index
@@ -12,7 +11,7 @@
 |
 */
 
-module.exports = {
+export default {
   'auto': 'auto',
   '0': 0,
   '10': 10,

@@ -1,4 +1,3 @@
-/* eslint-env node */
 /*
 |-----------------------------------------------------------------------------
 | SVG fill                                   https://tailwindcss.com/docs/svg
@@ -13,6 +12,6 @@
 |
 */
 
-module.exports = {
+export default {
   'current': 'currentColor',
 };
