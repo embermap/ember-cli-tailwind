@@ -1,6 +1,7 @@
 /* eslint-env node */
+'use strict';
 
-var fs = require('fs');
+const fs = require('fs');
 
 module.exports = {
   description: '',
@@ -11,32 +12,33 @@ module.exports = {
     // to us
   },
 
-  afterInstall() {
-    return this._insertImportIntoAppCss();
+  afterInstall(options) {
+    return this._insertImportIntoAppCss(options);
   },
 
-  _insertImportIntoAppCss: function() {
-    var text;
-    var appStylesFile;
+  _insertImportIntoAppCss(options) {
+    let baseDir = options.dummy ? 'tests/dummy/app/styles' : 'app/styles';
+    let text;
+    let appStylesFile;
 
-    if (fs.existsSync('app/styles/app.css')) {
+    if (fs.existsSync(`${baseDir}/app.css`)) {
       appStylesFile = 'app.css';
       text = "@import 'tailwind.css'";
 
-    } else if (fs.existsSync('app/styles/app.scss')) {
+    } else if (fs.existsSync(`${baseDir}/app.scss`)) {
       appStylesFile = 'app.scss';
       text = "@import 'tailwind'";
     }
 
-    var appStylesPath = `app/styles/${appStylesFile}`;
+    let appStylesPath = `${baseDir}/${appStylesFile}`;
 
     // The import isn't necessary for addons, as tailwind will automatically
     // be concatenated into vendor.css
     if (fs.existsSync(appStylesPath)) {
-      var contents = fs.readFileSync(`app/styles/${appStylesFile}`, 'utf8');
+      let contents = fs.readFileSync(appStylesPath, 'utf8');
 
       if (!contents.match(text)) {
-        fs.writeFileSync(`app/styles/${appStylesFile}`, `${text};\n\n${contents}`, 'utf8');
+        fs.writeFileSync(appStylesPath, `${text};\n\n${contents}`, 'utf8');
       }
     }
 
