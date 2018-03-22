@@ -21,11 +21,8 @@
     "test:fastboot": "qunit fastboot-tests"
   },
   "dependencies": {
-    "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0",
     "broccoli-plugin": "^1.3.0",
     "broccoli-rollup": "^2.0.0",
-    "broccoli-stew": "^1.5.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-clipboard": "^0.8.1",
     "ember-cli-htmlbars": "^2.0.1",
