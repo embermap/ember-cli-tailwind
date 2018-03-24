@@ -1,3 +1,7 @@
+# 0.2.7
+
+Bugfix.
+
 # 0.2.4
 
 Fix bad release.
