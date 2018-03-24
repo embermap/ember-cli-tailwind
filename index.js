@@ -23,13 +23,13 @@ module.exports = {
   },
 
   treeForStyles() {
-    if (this.projectType === 'app') {
+    if (this.projectType === 'app' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
 
   treeForAddonStyles() {
-    if (this.projectType === 'addon') {
+    if (this.projectType === 'addon' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
@@ -46,6 +46,10 @@ module.exports = {
     if (fs.existsSync(path.join(fullPath, 'config', 'tailwind.js'))) {
       return fullPath;
     }
+  },
+
+  _hasTailwindConfig() {
+    return this.tailwindInputPath;
   },
 
   _buildTailwind() {
