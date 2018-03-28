@@ -15,10 +15,10 @@ module.exports = {
 
     if (includer.trees) {
       this.projectType = 'app';
-      this.tailwindInputPath = this._getInputPath(this.project.root, includer.trees.app);
     } else if (includer.treePaths) {
+      this.tailwindInputPath = this._getInputPath(this.project.root, 'app');
       this.projectType = 'addon';
-      this.tailwindInputPath = this._getInputPath(includer.root, includer.treePaths.addon);
+      this.tailwindInputPath = this._getInputPath(this.project.root, 'addon');
     }
   },
 
