@@ -8,15 +8,20 @@ const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 module.exports = {
   name: 'ember-cli-tailwind',
 
+  isAddon() {
+    const keywords = this.project.pkg.keywords;
+    return (keywords && keywords.indexOf('ember-addon') !== -1);
+  },
+
   included(includer) {
     this._super.included.apply(this, arguments);
 
     this.import('vendor/etw.css');
 
-    if (includer.trees) {
+    if (!this.isAddon()) {
       this.projectType = 'app';
-    } else if (includer.treePaths) {
       this.tailwindInputPath = this._getInputPath(this.project.root, 'app');
+    } else {
       this.projectType = 'addon';
       this.tailwindInputPath = this._getInputPath(this.project.root, 'addon');
     }
