@@ -28,9 +28,11 @@ module.exports = {
   included(includer) {
     this._super.included.apply(this, arguments);
     
-    let buildTarget = includer.options['ember-cli-tailwind']['buildTarget'];
-    
     if (!this._validateBuildTarget(buildTarget)) {
+    let buildTarget = includer.options &&
+      includer.options['ember-cli-tailwind'] &&
+      includer.options['ember-cli-tailwind']['buildTarget'];
+
       return;
     }
     
