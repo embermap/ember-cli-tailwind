@@ -25,16 +25,15 @@ const validBuildTargets = Object.keys(buildDestinations);
 module.exports = {
   name: 'ember-cli-tailwind',
 
-  isAddon() {
-    const keywords = this.project.pkg.keywords;
-    return (keywords && keywords.indexOf('ember-addon') !== -1);
-  },
-
   included(includer) {
     this._super.included.apply(this, arguments);
     
     let buildTarget = includer.options['ember-cli-tailwind']['buildTarget'];
+    
+    if (!this._validateBuildTarget(buildTarget)) {
+      return;
     }
+    
     let buildConfig = buildDestinations[buildTarget];
     
     this.import('vendor/etw.css');
@@ -62,7 +61,7 @@ module.exports = {
       this.ui.writeWarnLine('Unable to process Tailwind styles for a non-string tree');
       return;
     }
-
+    
     let fullPath = path.join(root, inputPath, 'tailwind');
     if (fs.existsSync(path.join(fullPath, 'config', 'tailwind.js'))) {
       return fullPath;
@@ -89,6 +88,40 @@ module.exports = {
       srcFile: path.join('config', 'modules.css'),
       destFile: path.join(basePath, 'tailwind.css')
     });
-  }
+  },
 
+  _validateBuildTarget(buildTarget) {
+    if (!buildTarget) {
+      this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
+      return false;
+    }
+    
+    if (!validBuildTargets.includes(buildTarget)) {
+      this.ui.writeWarnLine('Your buildTarget is invalid. Valid targets are "app", "addon", or "dummy".')
+      return false;
+    }
+
+    if (this._tailwindAddonConfigExists() && !this._isDependency()) {
+      this.ui.writeError('A Tailwind config was detected in the addon folder, but `ember-cli-tailwind` is not listed as a dependency. Please make sure `ember-cli-tailwind` is listed in `dependencies` (NOT `devDependencies`).');
+      return false;
+    }
+    
+    return true;
+  },
+
+  _tailwindAddonConfigExists() {
+    return fs.existsSync(path.join(this.project.root, 'addon', 'tailwind'));
+  },
+
+  _isAddon() {
+    const keywords = this.project.pkg.keywords;
+    return (keywords && keywords.indexOf('ember-addon') !== -1);
+  },
+
+  // Check that `ember-cli-tailwind` is listed in `dependencies` (as opposed to `devDependencies`)
+  _isDependency() {
+    let deps = this.project.pkg.dependencies;
+
+    return Object.keys(deps).includes(this.name);
+  }
 };
