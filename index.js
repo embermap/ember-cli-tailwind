@@ -93,8 +93,15 @@ module.exports = {
   },
 
   _validateBuildTarget(buildTarget) {
+    // If no build target is found, but we're not in addon, assume something is definitely wrong
+    // and print the warning line so app consumers won't be in the dark about their styles not
+    // showing up. On the other hand, if it IS an addon, don't print the warning message since
+    // since this hook will be run twice regardless of whether or not they're intending to use
+    // tailwind in both their addon and dummy app.
     if (!buildTarget) {
-      this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
+      if (!this._isAddon()) {
+        this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
+      }
       return false;
     }
     
@@ -109,6 +116,11 @@ module.exports = {
     }
     
     return true;
+  },
+
+  _isAddon() {
+    const keywords = this.parent.pkg.keywords;
+    return (keywords && keywords.indexOf('ember-addon') !== -1);
   },
 
   _tailwindAddonConfigExists() {
