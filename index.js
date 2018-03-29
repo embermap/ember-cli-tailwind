@@ -5,6 +5,23 @@ const path = require('path');
 const Rollup = require('broccoli-rollup');
 const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 
+const buildDestinations = {
+  dummy: {
+    path: 'tests/dummy/app',
+    type: 'app'
+  },
+  app: {
+    path: 'app',
+    type: 'app'
+  },
+  addon: {
+    path: 'addon',
+    type: 'addon'
+  }
+};
+
+const validBuildTargets = Object.keys(buildDestinations);
+
 module.exports = {
   name: 'ember-cli-tailwind',
 
@@ -15,16 +32,15 @@ module.exports = {
 
   included(includer) {
     this._super.included.apply(this, arguments);
-
-    this.import('vendor/etw.css');
-
-    if (!this.isAddon()) {
-      this.projectType = 'app';
-      this.tailwindInputPath = this._getInputPath(this.project.root, 'app');
-    } else {
-      this.projectType = 'addon';
-      this.tailwindInputPath = this._getInputPath(this.project.root, 'addon');
+    
+    let buildTarget = includer.options['ember-cli-tailwind']['buildTarget'];
     }
+    let buildConfig = buildDestinations[buildTarget];
+    
+    this.import('vendor/etw.css');
+    
+    this.projectType = buildConfig.type;
+    this.tailwindInputPath = this._getInputPath(this.project.root, buildConfig.path);
   },
 
   treeForStyles() {
