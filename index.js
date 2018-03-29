@@ -41,7 +41,7 @@ module.exports = {
     this.import('vendor/etw.css');
     
     this.projectType = buildConfig.type;
-    this.tailwindInputPath = this._getInputPath(this.project.root, buildConfig.path);
+    this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
   },
 
   treeForStyles() {
@@ -92,18 +92,18 @@ module.exports = {
     });
   },
 
-  _validateBuildTarget(buildTarget, includer) {
+  _validateBuildTarget(buildTarget) {
     if (!buildTarget) {
       this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
       return false;
     }
     
-    if (!validBuildTargets.includes(buildTarget)) {
+    if (buildTarget && !validBuildTargets.includes(buildTarget)) {
       this.ui.writeWarnLine('Your buildTarget is invalid. Valid targets are "app", "addon", or "dummy".')
       return false;
     }
 
-    if (this._tailwindAddonConfigExists(includer) && !this._isDependency(includer)) {
+    if (this._tailwindAddonConfigExists() && !this._isDependency()) {
       this.ui.writeError('A Tailwind config was detected in the addon folder, but `ember-cli-tailwind` is not listed as a dependency. Please make sure `ember-cli-tailwind` is listed in `dependencies` (NOT `devDependencies`).');
       return false;
     }
@@ -111,13 +111,13 @@ module.exports = {
     return true;
   },
 
-  _tailwindAddonConfigExists(includer) {
-    return fs.existsSync(path.join(includer.project.root, 'addon', 'tailwind'));
+  _tailwindAddonConfigExists() {
+    return fs.existsSync(path.join(this.parent.root, 'addon', 'tailwind'));
   },
 
   // Check that `ember-cli-tailwind` is listed in `dependencies` (as opposed to `devDependencies`)
-  _isDependency(includer) {
-    let deps = includer.project.pkg.dependencies;
+  _isDependency() {
+    let deps = this.parent.pkg.dependencies;
 
     return Object.keys(deps).includes(this.name);
   }
