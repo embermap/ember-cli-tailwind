@@ -6,13 +6,9 @@ const TailwindApplicationRoute = Route.extend({
   router: service('-routing'),
 
   renderTemplate() {
-    if (window.location.href.match('/tailwind')) {
-      this.render('applicationTailwind', {
-        controller: this.controllerFor('applicationTailwind')
-      });
-    } else {
-      this._super(...arguments);
-    }
+    this.render('applicationTailwind', {
+      controller: this.controllerFor('applicationTailwind')
+    });
   }
 });
 
@@ -21,8 +17,10 @@ export function initialize(appInstance) {
   let fastbootIsInstalled = fastboot;
   let fastbootIsNotInstalled = !fastboot;
   let notUsingFastboot = fastbootIsNotInstalled || (fastbootIsInstalled && !fastboot.get('isFastBoot'));
+  let router = appInstance.lookup('service:router')._router;
+  let initialURL = router.initialURL || window.location.href;
 
-  if (notUsingFastboot && window.location.href.match('/tailwind')) {
+  if (notUsingFastboot && initialURL.match('/tailwind')) {
     appInstance.register('route:application', TailwindApplicationRoute);
     Router.map(function() {
       this.route('tailwind');
