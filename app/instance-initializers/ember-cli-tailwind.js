@@ -18,7 +18,7 @@ export function initialize(appInstance) {
   let fastbootIsNotInstalled = !fastboot;
   let notUsingFastboot = fastbootIsNotInstalled || (fastbootIsInstalled && !fastboot.get('isFastBoot'));
   let router = appInstance.lookup('service:router')._router;
-  let initialURL = router.initialURL || (window ? window.location.href : ''); // fastboot guard :/
+  let initialURL = router.initialURL || ((window && window.location) ? window.location.href : ''); // fastboot guard :/
 
   if (notUsingFastboot && initialURL.match('/tailwind')) {
     appInstance.register('route:application', TailwindApplicationRoute);
