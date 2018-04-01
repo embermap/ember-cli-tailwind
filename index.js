@@ -87,7 +87,7 @@ module.exports = {
     });
 
     return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
-      srcFile: path.join('config', 'modules.css'),
+      srcFile: path.join('modules.css'),
       destFile: path.join(basePath, 'tailwind.css')
     });
   },
