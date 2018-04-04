@@ -1,3 +1,60 @@
+# 0.3.0
+
+We moved the config files into `tailwind/config`. This is a breaking change.
+
+We also added better support for addons, but this comes with some new required configuration. We hope to make this easier in the future.
+
+For now, you'll need to set `'ember-cli-tailwind'['buildTarget']` to either `app`, `dummy` or `addon.
+
+**Use in apps**
+
+```js
+// ember-cli-build.js
+module.exports = function(defaults) {
+  let app = new EmberAddon(defaults, {
+    // Add options here
+
+    'ember-cli-tailwind': {
+      buildTarget: 'app'
+    }
+  });
+}
+```
+
+**Use in addons**
+
+You can use Tailwind in your `/addon` code, or to style your dummy app.
+
+To style your addon code, add this to `index.js`:
+
+```js
+// index.js
+module.exports = {
+  name: 'tailwind-dummy-app-test',
+
+  options: {
+    'ember-cli-tailwind': {
+      buildTarget: 'addon'
+    }
+  }
+};
+```
+
+To style your dummy app, add this to `ember-cli-build.js`:
+
+```js
+// ember-cli-build.js
+module.exports = function(defaults) {
+  let app = new EmberAddon(defaults, {
+    // Add options here
+
+    'ember-cli-tailwind': {
+      buildTarget: 'dummy'
+    }
+  });
+}
+```
+
 # 0.2.7
 
 Bugfix.
