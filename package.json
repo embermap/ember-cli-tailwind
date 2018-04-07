@@ -33,7 +33,7 @@
     "fs-extra": "^5.0.0",
     "jsdom": "^11.6.2",
     "postcss": "^6.0.20",
-    "postcss-import": "^11.1.0",
+    "postcss-easy-import": "^3.0.0",
     "tailwindcss": "^0.4.1"
   },
   "devDependencies": {
