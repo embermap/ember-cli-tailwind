@@ -59,9 +59,9 @@ module.exports = {
   },
 
   _shouldIncludeStyleguide() {
-    let envConfig = this.project.config(this.app.env)[this.name];
+    let envConfig = this.project.config(process.env.EMBER_ENV)[this.name];
     let shouldOverrideDefault = envConfig !== undefined && envConfig.shouldIncludeStyleguide !== undefined;
-    return shouldOverrideDefault ? envConfig.shouldIncludeStyleguide : this.app.env !== 'production';
+    return shouldOverrideDefault ? envConfig.shouldIncludeStyleguide : process.env.EMBER_ENV !== 'production';
   },
 
   // Private
