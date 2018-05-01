@@ -28,7 +28,6 @@
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-string-utils": "^1.1.0",
     "ember-composable-helpers": "^2.1.0",
-    "ember-string-helpers": "^1.0.2",
     "ember-truth-helpers": "^2.0.0",
     "fs-extra": "^5.0.0",
     "jsdom": "^11.6.2",
