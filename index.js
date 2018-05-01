@@ -29,17 +29,19 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     let buildTarget = includer.options &&
-      includer.options['ember-cli-tailwind'] &&
-      includer.options['ember-cli-tailwind']['buildTarget'];
+      includer.options[this.name] &&
+      includer.options[this.name]['buildTarget'];
 
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
     }
     
     let buildConfig = buildDestinations[buildTarget];
-    
-    this.import('vendor/etw.css');
-    
+
+    if (this._shouldIncludeStyleguide()) {
+      this.import('vendor/etw.css');
+    }
+
     this.projectType = buildConfig.type;
     this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
   },
@@ -54,6 +56,12 @@ module.exports = {
     if (this.projectType === 'addon' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
+  },
+
+  _shouldIncludeStyleguide() {
+    let envConfig = this.project.config(process.env.EMBER_ENV)[this.name];
+    let shouldOverrideDefault = envConfig !== undefined && envConfig.shouldIncludeStyleguide !== undefined;
+    return shouldOverrideDefault ? envConfig.shouldIncludeStyleguide : process.env.EMBER_ENV !== 'production';
   },
 
   // Private
