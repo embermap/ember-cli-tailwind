@@ -19,8 +19,8 @@
 */
 
 export default {
-  'auto': 'auto',
-  'px': '1px',
+  auto: 'auto',
+  px: '1px',
   '1': '0.25rem',
   '2': '0.5rem',
   '3': '0.75rem',
@@ -45,6 +45,6 @@ export default {
   '4/5': '80%',
   '1/6': '16.66667%',
   '5/6': '83.33333%',
-  'full': '100%',
-  'screen': '100vw'
+  full: '100%',
+  screen: '100vw'
 };

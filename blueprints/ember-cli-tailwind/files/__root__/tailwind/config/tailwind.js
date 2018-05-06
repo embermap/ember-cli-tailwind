@@ -7,7 +7,11 @@ import textSizes from './text-sizes';
 import fontWeights from './font-weights';
 import leading from './line-height';
 import tracking from './letter-spacing';
+import textColors from './text-colors';
+import backgroundColors from './background-colors';
+import backgroundSize from './background-size';
 import borderWidths from './border-widths';
+import borderColors from './border-colors';
 import borderRadius from './border-radius';
 import width from './width';
 import height from './height';
@@ -25,7 +29,6 @@ import svgFill from './svg-fill';
 import svgStroke from './svg-stroke';
 
 export default {
-
   colors,
   screens,
   fonts,
@@ -33,10 +36,11 @@ export default {
   fontWeights,
   leading,
   tracking,
-  textColors: colors,
-  backgroundColors: colors,
+  textColors,
+  backgroundColors,
+  backgroundSize,
   borderWidths,
-  borderColors: Object.assign({ default: colors['grey-light'] }, colors),
+  borderColors,
   borderRadius,
   width,
   height,
@@ -79,7 +83,7 @@ export default {
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    opacity: ['responsive', 'hover'],
+    opacity: ['responsive'],
     overflow: ['responsive'],
     padding: ['responsive'],
     pointerEvents: ['responsive'],
@@ -98,8 +102,29 @@ export default {
     visibility: ['responsive'],
     whitespace: ['responsive'],
     width: ['responsive'],
-    zIndex: ['responsive'],
+    zIndex: ['responsive']
   },
+
+  /*
+  |-----------------------------------------------------------------------------
+  | Plugins                                https://tailwindcss.com/docs/plugins
+  |-----------------------------------------------------------------------------
+  |
+  | Here is where you can register any plugins you'd like to use in your
+  | project. Tailwind's built-in `container` plugin is enabled by default to
+  | give you a Bootstrap-style responsive container component out of the box.
+  |
+  | Be sure to view the complete plugin documentation to learn more about how
+  | the plugin system works.
+  |
+  */
+
+  plugins: [
+    require('tailwindcss/plugins/container')({
+      // center: true,
+      // padding: '1rem',
+    })
+  ],
 
   /*
   |-----------------------------------------------------------------------------
@@ -114,7 +139,6 @@ export default {
   options: {
     prefix: '',
     important: false,
-    separator: ':',
-  },
-
-}
+    separator: ':'
+  }
+};
