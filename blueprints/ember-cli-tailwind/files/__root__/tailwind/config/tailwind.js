@@ -1,4 +1,4 @@
-'use strict';
+import container from 'tailwindcss/plugins/container'
 
 import colors from './colors';
 import screens from './screens';
@@ -120,7 +120,7 @@ export default {
   */
 
   plugins: [
-    require('tailwindcss/plugins/container')({
+    container({
       // center: true,
       // padding: '1rem',
     })
