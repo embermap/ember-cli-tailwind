@@ -64,11 +64,11 @@ module.exports = function(defaults) {
 
 Once installed, all of [Tailwind's classes](https://tailwindcss.com/docs/what-is-tailwind/) should be available to you.
 
-**Styleguide**
-
 You can see the default values, and change them, by looking at the generated files under `/app/tailwind`.
 
-If you server your Ember app and visit `/tailwind`, you should see a styleguide showing a summary of all your configured classes.
+**Styleguide**
+
+If you serve your Ember app and visit `/tailwind`, you should see a styleguide showing a summary of all your configured classes. It will rebuild as you modify Tailwind's default configuration.
 
 **Utilities**
 
