@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/ember-cli-tailwind.svg?style=flat-square)](http://badge.fury.io/js/ember-cli-tailwind)
 [![Build Status](https://img.shields.io/travis/embermap/ember-cli-tailwind/master.svg?style=flat-square)](https://travis-ci.org/embermap/ember-cli-tailwind)
 
-Ember CLI Tailwind adds Tailwind CSS to your app or addon. It also lets you configure every aspect of Tailwind that's designed to be configured, from the configuration values driving the utility classes, to defining new utility classes or components.
+Ember CLI Tailwind adds [Tailwind CSS](https://tailwindcss.com) to your app or addon. It also lets you configure every aspect of Tailwind that's designed to be configured, from the configuration values driving the utility classes, to defining new utility classes or components.
 
 ## Installation
 
