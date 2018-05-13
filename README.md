@@ -5,7 +5,7 @@
 
 Ember CLI Tailwind adds [Tailwind CSS](https://tailwindcss.com) to your app or addon. It also lets you configure every aspect of Tailwind that's designed to be configured, from the configuration values driving the utility classes, to defining new utility classes or components.
 
-It also adds a styleguide route to your app at `/tailwind`, that shows you all your configured styles:
+It comes with a styleguide route (`/tailwind`) that displays all your configured styles:
 
 ![image](https://user-images.githubusercontent.com/2922250/39969009-f0886cf4-56a3-11e8-85a1-15ce38d1f45d.png)
 
