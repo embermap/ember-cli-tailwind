@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const Funnel = require('broccoli-funnel');
 const Rollup = require('broccoli-rollup');
 const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 
@@ -56,6 +57,16 @@ module.exports = {
     if (this.projectType === 'addon' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
+  },
+
+  treeForApp(tree) {
+    let appTree = this._super(tree);
+    if (this._shouldIncludeStyleguide()) {
+      return appTree;
+    } 
+    return new Funnel(appTree, {
+      exclude: ['**/instance-initializers/ember-cli-tailwind.js'],
+    });
   },
 
   _shouldIncludeStyleguide() {
