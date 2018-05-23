@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const Funnel = require('broccoli-funnel');
 const Rollup = require('broccoli-rollup');
 const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 
@@ -35,7 +36,7 @@ module.exports = {
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
     }
-    
+
     let buildConfig = buildDestinations[buildTarget];
 
     if (this._shouldIncludeStyleguide()) {
@@ -58,6 +59,18 @@ module.exports = {
     }
   },
 
+  treeForApp(tree) {
+    let appTree = this._super(tree);
+
+    if (!this._shouldIncludeStyleguide()) {
+      appTree = new Funnel(appTree, {
+        exclude: ['**/instance-initializers/ember-cli-tailwind.js'],
+      });
+    }
+
+    return appTree;
+  },
+
   _shouldIncludeStyleguide() {
     let envConfig = this.project.config(process.env.EMBER_ENV)[this.name];
     let shouldOverrideDefault = envConfig !== undefined && envConfig.shouldIncludeStyleguide !== undefined;
@@ -71,7 +84,7 @@ module.exports = {
       this.ui.writeWarnLine('Unable to process Tailwind styles for a non-string tree');
       return;
     }
-    
+
     let fullPath = path.join(root, inputPath, 'tailwind');
     if (fs.existsSync(path.join(fullPath, 'config', 'tailwind.js'))) {
       return fullPath;
@@ -112,7 +125,7 @@ module.exports = {
       }
       return false;
     }
-    
+
     if (buildTarget && !validBuildTargets.includes(buildTarget)) {
       this.ui.writeWarnLine('Your buildTarget is invalid. Valid targets are "app", "addon", or "dummy".')
       return false;
@@ -122,7 +135,7 @@ module.exports = {
       this.ui.writeError('A Tailwind config was detected in the addon folder, but `ember-cli-tailwind` is not listed as a dependency. Please make sure `ember-cli-tailwind` is listed in `dependencies` (NOT `devDependencies`).');
       return false;
     }
-    
+
     return true;
   },
 
