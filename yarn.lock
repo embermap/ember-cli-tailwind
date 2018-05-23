@@ -2321,6 +2321,12 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
+"ember-cli-tailwind-styleguide@https://github.com/jrowlingson/ember-cli-tailwind-styleguide#v0.0.1":
+  version "0.0.0"
+  resolved "https://github.com/jrowlingson/ember-cli-tailwind-styleguide#3305c7a91b8adc7438f40e686648a9bfee516c04"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-cli-test-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-test-info/-/ember-cli-test-info-1.0.0.tgz#ed4e960f249e97523cf891e4aed2072ce84577b4"
