@@ -1,4 +1,4 @@
-import container from 'tailwindcss/plugins/container'
+import container from 'tailwindcss/plugins/container';
 
 import colors from './colors';
 import screens from './screens';
