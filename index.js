@@ -5,6 +5,8 @@ const path = require('path');
 const Funnel = require('broccoli-funnel');
 const Rollup = require('broccoli-rollup');
 const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
 
 const buildDestinations = {
   dummy: {
@@ -103,7 +105,11 @@ module.exports = {
         output: {
           file: 'tailwind-config.js',
           format: 'cjs'
-        }
+        },
+        plugins: [
+          resolve(),
+          commonjs()
+        ]
       }
     });
 

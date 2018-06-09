@@ -1,4 +1,3 @@
-/* eslint-env node */
 let { createBuilder } = require('broccoli-test-helper');
 let expect = require('chai').expect;
 let EmberAddon = require('ember-cli/lib/broccoli/ember-addon');

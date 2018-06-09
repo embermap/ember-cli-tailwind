@@ -52,6 +52,15 @@ module.exports = {
       env: {
         embertest: true
       }
+    },
+
+    // node test files
+    {
+      files: ['node-tests/**/*.js'],
+      env: {
+        mocha: true,
+        node: true
+      }
     }
   ]
 };
