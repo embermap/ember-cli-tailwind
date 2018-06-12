@@ -49,6 +49,22 @@ describe('build target', function() {
     expect(files.assets['tailwind.css']).to.contain('.text-ember-red');
   });
 
+  it(`builds for addons`, async () => {
+    loadScenario(input, 'addon-with-tailwind');
+
+    let addon = new EmberAddon({}, {
+      'ember-cli-tailwind': {
+        buildTarget: 'addon'
+      }
+    });
+    output = createBuilder(addon.toTree());
+    await output.build();
+
+    let files = output.read();
+    expect(files.assets).to.have.property('vendor.css');
+    expect(files.assets['vendor.css']).to.contain('.text-ember-red');
+  });
+
   it(`builds for addon's dummy apps`, async () => {
     loadScenario(input, 'dummy-app-with-tailwind');
 

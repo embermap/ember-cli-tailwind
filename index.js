@@ -31,6 +31,7 @@ module.exports = {
   included(includer) {
     this._super.included.apply(this, arguments);
 
+    // If this is set, show a warning
     let buildTarget = includer.options &&
       includer.options[this.name] &&
       includer.options[this.name]['buildTarget'];
@@ -41,7 +42,7 @@ module.exports = {
     //   buildTarget = 'app';
     // }
 
-    // debugger;
+    debugger;
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
     }
@@ -165,6 +166,6 @@ module.exports = {
   _isDependency() {
     let deps = this.parent.pkg.dependencies;
 
-    return Object.keys(deps).includes(this.name);
+    return deps && Object.keys(deps).includes(this.name);
   }
 };
