@@ -1,5 +1,12 @@
 /**
- * Use this file to create your own utility file.
+ * You can create new utilities here.
  *
- * You can rename this file whatever you like and also make other files.
+ * Feel free to rename this file, define multiple utilities here, or make
+ * any other files in this directory.
+
+ * Here's an example:
 **/
+
+/* .skew-45 {
+  transform: skewY(45deg);
+} */
