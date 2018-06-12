@@ -35,6 +35,13 @@ module.exports = {
       includer.options[this.name] &&
       includer.options[this.name]['buildTarget'];
 
+    // // fs.readdirSync(includer.project.root + '/app/tailwind')
+    // let buildTarget;
+    // if (fs.existsSync(includer.project.root + '/app/tailwind')) {
+    //   buildTarget = 'app';
+    // }
+
+    // debugger;
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
     }
