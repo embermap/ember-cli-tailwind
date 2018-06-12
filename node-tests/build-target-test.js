@@ -36,11 +36,7 @@ describe('build target', function() {
   it(`builds for applications`, async () => {
     loadScenario(input, 'app-with-tailwind');
 
-    let app = new EmberApp({}, {
-      'ember-cli-tailwind': {
-        buildTarget: 'app'
-      }
-    });
+    let app = new EmberApp();
     output = createBuilder(app.toTree());
     await output.build();
 
@@ -52,11 +48,7 @@ describe('build target', function() {
   it(`builds for addons`, async () => {
     loadScenario(input, 'addon-with-tailwind');
 
-    let addon = new EmberAddon({}, {
-      'ember-cli-tailwind': {
-        buildTarget: 'addon'
-      }
-    });
+    let addon = new EmberAddon();
     output = createBuilder(addon.toTree());
     await output.build();
 
@@ -68,11 +60,7 @@ describe('build target', function() {
   it(`builds for addon's dummy apps`, async () => {
     loadScenario(input, 'dummy-app-with-tailwind');
 
-    let addon = new EmberAddon({}, {
-      'ember-cli-tailwind': {
-        buildTarget: 'dummy'
-      }
-    });
+    let addon = new EmberAddon();
     output = createBuilder(addon.toTree());
     await output.build();
 
