@@ -31,9 +31,22 @@ module.exports = {
   included(includer) {
     this._super.included.apply(this, arguments);
 
-    let buildTarget = includer.options &&
+    // If this is set, show a warning
+    let explicitBuildTarget = includer.options &&
       includer.options[this.name] &&
       includer.options[this.name]['buildTarget'];
+    if (explicitBuildTarget) {
+      this.ui.writeWarnLine('You no longer need to specify a buildTarget - it is now derived from your project files. Please delete this config option.')
+    }
+
+    let buildTarget;
+    if (fs.existsSync(includer.project.root + '/app/tailwind')) {
+      buildTarget = 'app';
+    } else if (fs.existsSync(includer.project.root + '/addon/tailwind')) {
+      buildTarget = 'addon';
+    } else if (fs.existsSync(includer.project.root + '/tests/dummy/app/tailwind')) {
+      buildTarget = 'dummy';
+    }
 
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
@@ -158,6 +171,6 @@ module.exports = {
   _isDependency() {
     let deps = this.parent.pkg.dependencies;
 
-    return Object.keys(deps).includes(this.name);
+    return deps && Object.keys(deps).includes(this.name);
   }
 };

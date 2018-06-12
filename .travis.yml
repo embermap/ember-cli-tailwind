@@ -2,55 +2,72 @@ language: node_js
 sudo: false
 dist: trusty
 node_js:
-- '6'
+  - '6'
+
 addons:
   chrome: stable
+
 cache:
   yarn: true
   directories:
-  - "$HOME/.npm"
-  - "$HOME/.cache"
-  - node_modules
+    - "$HOME/.npm"
+    - "$HOME/.cache"
+    - node_modules
+
 env:
   global:
-  - JOBS=1
+    - JOBS=1
+
 before_install:
-- curl -o- -L https://yarnpkg.com/install.sh | bash
-- export PATH=$HOME/.yarn/bin:$PATH
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
 install:
-- yarn install
+  - yarn install
+
 notifications:
   email: false
+
 stages:
-- test
-- additional tests
-- fastboot tests
-- versioned tests
+  - test
+  - additional tests
+  - fastboot tests
+  - versioned tests
+
 script:
-- node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+
 jobs:
   fail_fast: true
   include:
-  - stage: test
-    env: NAME=test
-    script: yarn test
-  - stage: additional tests
-    env: NAME=floating dependencies
-    install: yarn install --no-lockfile --non-interactive
-    script: yarn test
-  - stage: fastboot tests
-    node_js: '8'
-    env: NAME=fastboot tests
-    script: yarn test:fastboot
-  - stage: versioned tests
-    env: EMBER_TRY_SCENARIO=ember-lts-2.8
-  - env: EMBER_TRY_SCENARIO=ember-lts-2.12
-  - env: EMBER_TRY_SCENARIO=ember-lts-2.16
-  - env: EMBER_TRY_SCENARIO=ember-lts-2.18
-  - env: EMBER_TRY_SCENARIO=ember-release
-  - env: EMBER_TRY_SCENARIO=ember-beta
-  - env: EMBER_TRY_SCENARIO=ember-canary
-  - env: EMBER_TRY_SCENARIO=ember-default
+    - stage: test
+      env: NAME=test
+      script: yarn test
+
+    - stage: additional tests
+      env: NAME=floating dependencies
+      install: yarn install --no-lockfile --non-interactive
+      script: yarn test
+
+    - env: NAME=node-tests
+      node_js: '8'
+      script: yarn test:node
+
+    - stage: fastboot tests
+      node_js: '8'
+      env: NAME=fastboot tests
+      script: yarn test:fastboot
+
+    - stage: versioned tests
+      env: EMBER_TRY_SCENARIO=ember-lts-2.8
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.12
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.16
+    - env: EMBER_TRY_SCENARIO=ember-lts-2.18
+    - env: EMBER_TRY_SCENARIO=ember-release
+    - env: EMBER_TRY_SCENARIO=ember-beta
+    - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-default
+
 deploy:
   provider: npm
   email: sam.selikoff@gmail.com
