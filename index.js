@@ -20,6 +20,10 @@ const buildDestinations = {
   addon: {
     path: 'addon',
     type: 'addon'
+  },
+  src: {
+    path: 'src',
+    type: 'app'
   }
 };
 
@@ -42,6 +46,8 @@ module.exports = {
     let buildTarget;
     if (fs.existsSync(includer.project.root + '/app/tailwind')) {
       buildTarget = 'app';
+    } else (fs.existsSync(includer.project.root + '/src/tailwind')) {
+      buildTarget = 'src';
     } else if (fs.existsSync(includer.project.root + '/addon/tailwind')) {
       buildTarget = 'addon';
     } else if (fs.existsSync(includer.project.root + '/tests/dummy/app/tailwind')) {
