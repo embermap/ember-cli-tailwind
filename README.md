@@ -17,49 +17,6 @@ Install the addon with
 ember install ember-cli-tailwind
 ```
 
-Then, configure it for your app, your addon, or your addon's dummy app by setting the `buildTarget` config property:
-
-**Apps**
-
-```js
-// ember-cli-build.js
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    'ember-cli-tailwind': {
-      buildTarget: 'app'
-    }
-  })
-});
-```
-
-**Addons, when styling things under /addon you intended to provide to host apps**
-
-```js
-// index.js
-module.exports = {
-  name: 'your-addon',
-
-  options: {
-    'ember-cli-tailwind': {
-      buildTarget: 'addon'
-    }
-  }
-}
-```
-
-**Addons, when styling things under /tests/dummy/app, your addon's dummy app**
-
-```js
-// ember-cli-build.js
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    'ember-cli-tailwind': {
-      buildTarget: 'dummy'
-    }
-  })
-});
-```
-
 ## Usage
 
 Once installed, all of [Tailwind's classes](https://tailwindcss.com/docs/what-is-tailwind/) should be available to you.
