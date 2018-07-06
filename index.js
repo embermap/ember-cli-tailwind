@@ -21,7 +21,7 @@ const buildDestinations = {
   },
   addon: {
     path: 'addon',
-    stylesPath: 'app/styles',
+    stylesPath: '',
     type: 'addon'
   },
   src: {
@@ -120,7 +120,7 @@ module.exports = {
   },
 
   _buildTailwind() {
-    let basePath = this.buildConfig.type === 'app' ? this.buildConfig.stylesPath : '';
+    let basePath = this.buildConfig.stylesPath;
     let tailwindConfig = new Rollup(this.tailwindInputPath, {
       rollup: {
         input: 'config/tailwind.js',
