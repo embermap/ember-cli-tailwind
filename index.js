@@ -11,18 +11,22 @@ const commonjs = require('rollup-plugin-commonjs');
 const buildDestinations = {
   dummy: {
     path: 'tests/dummy/app',
+    stylesPath: 'app/styles',
     type: 'app'
   },
   app: {
     path: 'app',
+    stylesPath: 'app/styles',
     type: 'app'
   },
   addon: {
     path: 'addon',
+    stylesPath: 'app/styles',
     type: 'addon'
   },
   src: {
     path: 'src',
+    stylesPath: 'src/ui/styles',
     type: 'app'
   }
 };
@@ -58,24 +62,23 @@ module.exports = {
       return;
     }
 
-    let buildConfig = buildDestinations[buildTarget];
+    this.buildConfig = buildDestinations[buildTarget];
 
     if (this._shouldIncludeStyleguide()) {
       this.import('vendor/etw.css');
     }
 
-    this.projectType = buildConfig.type;
-    this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
+    this.tailwindInputPath = this._getInputPath(this.parent.root, this.buildConfig.path);
   },
 
   treeForStyles() {
-    if (this.projectType === 'app' && this._hasTailwindConfig()) {
+    if (this.buildConfig.type === 'app' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
 
   treeForAddonStyles() {
-    if (this.projectType === 'addon' && this._hasTailwindConfig()) {
+    if (this.buildConfig.type === 'addon' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
@@ -117,7 +120,7 @@ module.exports = {
   },
 
   _buildTailwind() {
-    let basePath = this.projectType === 'app' ? 'app/styles' : '';
+    let basePath = this.buildConfig.type === 'app' ? this.buildConfig.stylesPath : '';
     let tailwindConfig = new Rollup(this.tailwindInputPath, {
       rollup: {
         input: 'config/tailwind.js',
