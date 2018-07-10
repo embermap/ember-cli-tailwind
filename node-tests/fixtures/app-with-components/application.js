@@ -16,6 +16,9 @@ module.exports = function() {
       config: {
         'environment.js': "module.exports = function() { return { modulePrefix: 'application' } };"
       },
+      tests: {
+        'index.html': ''
+      },
       'ember-cli-build.js': 'module.exports = function() { return { } };',
       'package.json': JSON.stringify({
         name: 'application',

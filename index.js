@@ -95,21 +95,24 @@ module.exports = {
     return appTree;
   },
 
+  // Private
+
   _shouldIncludeStyleguide() {
     let envConfig = this.project.config(process.env.EMBER_ENV)[this.name];
     let shouldOverrideDefault = envConfig !== undefined && envConfig.shouldIncludeStyleguide !== undefined;
     return shouldOverrideDefault ? envConfig.shouldIncludeStyleguide : process.env.EMBER_ENV !== 'production';
   },
 
-  // Private
-
   _getInputPath(root, inputPath) {
+    console.log(root, inputPath);
+
     if (typeof inputPath !== 'string') {
       this.ui.writeWarnLine('Unable to process Tailwind styles for a non-string tree');
       return;
     }
 
     let fullPath = path.join(root, inputPath, 'tailwind');
+
     if (fs.existsSync(path.join(fullPath, 'config', 'tailwind.js'))) {
       return fullPath;
     }

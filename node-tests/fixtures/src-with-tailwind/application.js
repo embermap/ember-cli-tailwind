@@ -14,25 +14,13 @@ module.exports = function() {
         },
         tailwind: fixturify.readSync(path.join(__dirname, './tailwind'))
       },
-      config: {
-        'environment.js': `module.exports = function() {
-          return {
-            modulePrefix: 'application',
-            'ember-resolver': {
-              features: {
-                EMBER_RESOLVER_MODULE_UNIFICATION: true
-              }
-            },
-            EmberENV: {
-              FEATURES: {
-                // Here you can enable experimental features on an ember canary build
-                // e.g. 'with-controller': true
-                'ember-module-unification': true
-              },
-            }
-        } };`
+      tests: {
+        'index.html': '',
       },
-      'ember-cli-build.js': 'module.exports = function() { return { };',
+      config: {
+        'environment.js': `module.exports = function() {};`
+      },
+      'ember-cli-build.js': 'module.exports = function() { return {}};',
       'package.json': JSON.stringify({
         name: 'application',
         devDependencies: {

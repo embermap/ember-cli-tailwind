@@ -14,7 +14,7 @@ describe('import files', function() {
       let addon = new EmberAddon({}, {});
       expect(_.values(addon._styleOutputFiles)[0]).to.include('vendor/etw.css');
 
-      let output = createBuilder(addon._processedAppTree());
+      let output = createBuilder(addon.getAppJavascript());
       await output.build();
       expect(output.read()).to.have.nested.property(
         'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -27,7 +27,7 @@ describe('import files', function() {
     let addon = new EmberAddon({}, {});
     expect(_.values(addon._styleOutputFiles)[0]).to.not.include('vendor/etw.css');
 
-    let output = createBuilder(addon._processedAppTree());
+    let output = createBuilder(addon.getAppJavascript());
     await output.build();
     expect(output.read()).not.to.have.nested.property(
       'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -43,7 +43,7 @@ describe('import files', function() {
         });
         expect(_.values(addon._styleOutputFiles)[0]).to.include('vendor/etw.css');
 
-        let output = createBuilder(addon._processedAppTree());
+        let output = createBuilder(addon.getAppJavascript());
         await output.build();
         expect(output.read()).to.have.nested.property(
           'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -59,7 +59,7 @@ describe('import files', function() {
         });
         expect(_.values(addon._styleOutputFiles)[0]).to.not.include('vendor/etw.css');
 
-        let output = createBuilder(addon._processedAppTree());
+        let output = createBuilder(addon.getAppJavascript());
         await output.build();
         expect(output.read()).not.to.have.nested.property(
           'dummy.instance-initializers.ember-cli-tailwind\\.js'
