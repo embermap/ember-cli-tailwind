@@ -21,7 +21,7 @@ const buildDestinations = {
   },
   addon: {
     path: 'addon',
-    stylesPath: 'addon/style',
+    stylesPath: 'addon/styles',
     type: 'addon'
   },
   src: {
