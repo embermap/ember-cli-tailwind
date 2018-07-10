@@ -104,8 +104,6 @@ module.exports = {
   },
 
   _getInputPath(root, inputPath) {
-    console.log(root, inputPath);
-
     if (typeof inputPath !== 'string') {
       this.ui.writeWarnLine('Unable to process Tailwind styles for a non-string tree');
       return;
