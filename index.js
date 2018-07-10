@@ -21,7 +21,7 @@ const buildDestinations = {
   },
   addon: {
     path: 'addon',
-    stylesPath: '',
+    stylesPath: 'addon/style',
     type: 'addon'
   },
   src: {
@@ -120,7 +120,6 @@ module.exports = {
   },
 
   _buildTailwind() {
-    let basePath = this.buildConfig.stylesPath;
     let tailwindConfig = new Rollup(this.tailwindInputPath, {
       rollup: {
         input: 'config/tailwind.js',
@@ -137,7 +136,7 @@ module.exports = {
 
     return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
       srcFile: path.join('modules.css'),
-      destFile: path.join(basePath, 'tailwind.css')
+      destFile: path.join(this.buildConfig.stylesPath, 'tailwind.css')
     });
   },
 
