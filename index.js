@@ -8,22 +8,30 @@ const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 
-const buildDestinations = {
+const buildTargets = {
   dummy: {
     path: 'tests/dummy/app',
-    type: 'app'
+    type: 'app',
+    basePath: ''
   },
   app: {
     path: 'app',
-    type: 'app'
+    type: 'app',
+    basePath: 'app/styles'
   },
   addon: {
     path: 'addon',
-    type: 'addon'
+    type: 'addon',
+    basePath: ''
+  },
+  mu: {
+    path: 'src',
+    type: 'app',
+    basePath: 'src/ui/styles'
   }
 };
 
-const validBuildTargets = Object.keys(buildDestinations);
+const validBuildTargets = Object.keys(buildTargets);
 
 module.exports = {
   name: 'ember-cli-tailwind',
@@ -39,37 +47,30 @@ module.exports = {
       this.ui.writeWarnLine('You no longer need to specify a buildTarget - it is now derived from your project files. Please delete this config option.')
     }
 
-    let buildTarget;
-    if (fs.existsSync(includer.project.root + '/app/tailwind')) {
-      buildTarget = 'app';
-    } else if (fs.existsSync(includer.project.root + '/addon/tailwind')) {
-      buildTarget = 'addon';
-    } else if (fs.existsSync(includer.project.root + '/tests/dummy/app/tailwind')) {
-      buildTarget = 'dummy';
-    }
+    // find build target + config
+    let buildTarget = this._findBuildTarget(includer.project.root);
 
     if (!this._validateBuildTarget(buildTarget, includer)) {
       return;
     }
 
-    let buildConfig = buildDestinations[buildTarget];
+    this.buildConfig = buildTargets[buildTarget];
+    this.tailwindInputPath = this._getInputPath(this.parent.root, this.buildConfig.path);
 
+    // include our stuff
     if (this._shouldIncludeStyleguide()) {
       this.import('vendor/etw.css');
     }
-
-    this.projectType = buildConfig.type;
-    this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
   },
 
   treeForStyles() {
-    if (this.projectType === 'app' && this._hasTailwindConfig()) {
+    if (this.buildConfig.type === 'app' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
 
   treeForAddonStyles() {
-    if (this.projectType === 'addon' && this._hasTailwindConfig()) {
+    if (this.buildConfig.type === 'addon' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
@@ -111,7 +112,6 @@ module.exports = {
   },
 
   _buildTailwind() {
-    let basePath = this.projectType === 'app' ? 'app/styles' : '';
     let tailwindConfig = new Rollup(this.tailwindInputPath, {
       rollup: {
         input: 'config/tailwind.js',
@@ -128,8 +128,16 @@ module.exports = {
 
     return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
       srcFile: path.join('modules.css'),
-      destFile: path.join(basePath, 'tailwind.css')
+      destFile: path.join(this.buildConfig.basePath, 'tailwind.css')
     });
+  },
+
+  _findBuildTarget(root) {
+    for (let [target, config] of Object.entries(buildTargets)) {
+      if (fs.existsSync(path.join(root, config.path, 'tailwind'))) {
+        return target;
+      }
+    }
   },
 
   _validateBuildTarget(buildTarget) {
