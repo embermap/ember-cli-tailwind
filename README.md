@@ -17,49 +17,6 @@ Install the addon with
 ember install ember-cli-tailwind
 ```
 
-Then, configure it for your app, your addon, or your addon's dummy app by setting the `buildTarget` config property:
-
-**Apps**
-
-```js
-// ember-cli-build.js
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    'ember-cli-tailwind': {
-      buildTarget: 'app'
-    }
-  })
-});
-```
-
-**Addons, when styling things under /addon you intended to provide to host apps**
-
-```js
-// index.js
-module.exports = {
-  name: 'your-addon',
-
-  options: {
-    'ember-cli-tailwind': {
-      buildTarget: 'addon'
-    }
-  }
-}
-```
-
-**Addons, when styling things under /tests/dummy/app, your addon's dummy app**
-
-```js
-// ember-cli-build.js
-module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    'ember-cli-tailwind': {
-      buildTarget: 'dummy'
-    }
-  })
-});
-```
-
 ## Usage
 
 Once installed, all of [Tailwind's classes](https://tailwindcss.com/docs/what-is-tailwind/) should be available to you.
@@ -98,6 +55,24 @@ You can define [Tailwind components](https://tailwindcss.com/docs/extracting-com
 ```
 
 Files added here will automatically be added to your build.
+
+**Plugins**
+
+You can add [Tailwind plugins](https://tailwindcss.com/docs/plugins) by using the `app/tailwind/config/tailwind.js` file, importing your plugin, and adding it to the `plugins` array:
+
+```js
+import myPlugin from 'some-neat-plugin';
+
+// snip
+
+plugins: [
+  container({
+    // center: true,
+    // padding: '1rem',
+  }),
+  myPlugin(),
+],
+```
 
 ## Configuration
 
