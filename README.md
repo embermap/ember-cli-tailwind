@@ -56,6 +56,24 @@ You can define [Tailwind components](https://tailwindcss.com/docs/extracting-com
 
 Files added here will automatically be added to your build.
 
+**Plugins**
+
+You can add [Tailwind plugins](https://tailwindcss.com/docs/plugins) by using the `app/tailwind/config/tailwind.js` file, importing your plugin, and adding it to the `plugins` array:
+
+```js
+import myPlugin from 'some-neat-plugin';
+
+// snip
+
+plugins: [
+  container({
+    // center: true,
+    // padding: '1rem',
+  }),
+  myPlugin(),
+],
+```
+
 ## Configuration
 
 **shouldIncludeStyleguide**
