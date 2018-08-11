@@ -11,14 +11,10 @@ describe('import files', function() {
   ['development', 'test'].forEach(environment => {
     it(`includes styleguide styles by default in non-production environments (${environment})`, async () => {
       process.env.EMBER_ENV = environment;
-      let addon = new EmberAddon({}, {
-        'ember-cli-tailwind': {
-          buildTarget: 'app'
-        }
-      });
+      let addon = new EmberAddon({}, {});
       expect(_.values(addon._styleOutputFiles)[0]).to.include('vendor/etw.css');
 
-      let output = createBuilder(addon._processedAppTree());
+      let output = createBuilder(addon.getAppJavascript());
       await output.build();
       expect(output.read()).to.have.nested.property(
         'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -28,14 +24,10 @@ describe('import files', function() {
 
   it('excludes styleguide styles by default in the production environment', async () => {
     process.env.EMBER_ENV = 'production';
-    let addon = new EmberAddon({}, {
-      'ember-cli-tailwind': {
-        buildTarget: 'app'
-      }
-    });
+    let addon = new EmberAddon({}, {});
     expect(_.values(addon._styleOutputFiles)[0]).to.not.include('vendor/etw.css');
 
-    let output = createBuilder(addon._processedAppTree());
+    let output = createBuilder(addon.getAppJavascript());
     await output.build();
     expect(output.read()).not.to.have.nested.property(
       'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -54,7 +46,7 @@ describe('import files', function() {
         });
         expect(_.values(addon._styleOutputFiles)[0]).to.include('vendor/etw.css');
 
-        let output = createBuilder(addon._processedAppTree());
+        let output = createBuilder(addon.getAppJavascript());
         await output.build();
         expect(output.read()).to.have.nested.property(
           'dummy.instance-initializers.ember-cli-tailwind\\.js'
@@ -73,7 +65,7 @@ describe('import files', function() {
         });
         expect(_.values(addon._styleOutputFiles)[0]).to.not.include('vendor/etw.css');
 
-        let output = createBuilder(addon._processedAppTree());
+        let output = createBuilder(addon.getAppJavascript());
         await output.build();
         expect(output.read()).not.to.have.nested.property(
           'dummy.instance-initializers.ember-cli-tailwind\\.js'

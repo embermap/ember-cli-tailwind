@@ -12,22 +12,22 @@ const buildTargets = {
   dummy: {
     path: 'tests/dummy/app',
     type: 'app',
-    basePath: ''
+    stylesPath: ''
   },
   app: {
     path: 'app',
     type: 'app',
-    basePath: 'app/styles'
+    stylesPath: 'app/styles'
   },
   addon: {
     path: 'addon',
     type: 'addon',
-    basePath: ''
+    stylesPath: ''
   },
   mu: {
     path: 'src',
     type: 'app',
-    basePath: 'src/ui/styles'
+    stylesPath: 'src/ui/styles'
   }
 };
 
@@ -54,6 +54,7 @@ module.exports = {
       return;
     }
 
+    this.buildTarget = buildTarget;
     this.buildConfig = buildTargets[buildTarget];
     this.tailwindInputPath = this._getInputPath(this.parent.root, this.buildConfig.path);
 
@@ -63,8 +64,14 @@ module.exports = {
     }
   },
 
+  treeForSrc() {
+    if (this.buildTarget === 'mu') {
+      return this._buildTailwind();
+    }
+  },
+
   treeForStyles() {
-    if (this.buildConfig.type === 'app' && this._hasTailwindConfig()) {
+    if (this.buildTarget !== 'mu' && this.buildConfig.type === 'app' && this._hasTailwindConfig()) {
       return this._buildTailwind();
     }
   },
@@ -128,7 +135,7 @@ module.exports = {
 
     return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
       srcFile: path.join('modules.css'),
-      destFile: path.join(this.buildConfig.basePath, 'tailwind.css')
+      destFile: path.join(this.buildConfig.stylesPath, 'tailwind.css')
     });
   },
 

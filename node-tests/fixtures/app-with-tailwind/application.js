@@ -16,7 +16,10 @@ module.exports = function() {
       config: {
         'environment.js': "module.exports = function() { return { modulePrefix: 'application' } };"
       },
-      'ember-cli-build.js': 'module.exports = function() { return { "ember-cli-tailwind": { buildTarget: "dummy" } } };',
+      tests: {
+        'index.html': ''
+      },
+      'ember-cli-build.js': 'module.exports = function() { return { } };',
       'package.json': JSON.stringify({
         name: 'application',
         devDependencies: {

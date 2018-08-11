@@ -33,7 +33,7 @@ module.exports = function() {
         },
         'index.html': ''
       },
-      'ember-cli-build.js': 'module.exports = function() { return { "ember-cli-tailwind": { buildTarget: "dummy" } } };',
+      'ember-cli-build.js': 'module.exports = function() { return { } };',
       'package.json': JSON.stringify({
         name: 'application',
         devDependencies: {

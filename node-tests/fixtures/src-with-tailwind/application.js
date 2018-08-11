@@ -1,25 +1,26 @@
 // const fs = require('fs');
 const fixturify = require('fixturify')
 const path = require('path');
-// const ADDON_ROOT = path.resolve(__dirname, '..', '..', '..');
 
 module.exports = function() {
   return {
     application: {
-      app: {
-        styles: {
-          'app.css': ''
+      src: {
+        ui: {
+          styles: {
+            'app.css': ''
+          },
+          'index.html': ''
         },
-        tailwind: fixturify.readSync(path.join(__dirname, './tailwind')),
-        'index.html': ''
-      },
-      config: {
-        'environment.js': "module.exports = function() { return { modulePrefix: 'application' } };"
+        tailwind: fixturify.readSync(path.join(__dirname, './tailwind'))
       },
       tests: {
-        'index.html': ''
+        'index.html': '',
       },
-      'ember-cli-build.js': 'module.exports = function() { return { } };',
+      config: {
+        'environment.js': `module.exports = function() {};`
+      },
+      'ember-cli-build.js': 'module.exports = function() { return {}};',
       'package.json': JSON.stringify({
         name: 'application',
         devDependencies: {

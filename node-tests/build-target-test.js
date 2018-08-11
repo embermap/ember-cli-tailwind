@@ -45,6 +45,18 @@ describe('build target', function() {
     expect(files.assets['tailwind.css']).to.contain('.text-ember-red');
   });
 
+  if (process.env.EMBER_CLI_MODULE_UNIFICATION) {
+    it(`builds for applications with module unification layout`, async () => {
+      loadScenario(input, 'src-with-tailwind');
+      let app = new EmberApp();
+      output = createBuilder(app.toTree());
+      await output.build();
+      let files = output.read();
+      expect(files.assets).to.have.property('tailwind.css');
+      expect(files.assets['tailwind.css']).to.contain('.text-ember-red');
+    });
+  }
+
   it(`builds for addons`, async () => {
     loadScenario(input, 'addon-with-tailwind');
 
