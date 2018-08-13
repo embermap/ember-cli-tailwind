@@ -27,17 +27,20 @@ notifications:
 
 jobs:
   fail_fast: true
-  
+
   include:
     - stage: locked dependencies
-      env: NAME=test
-      script: yarn test
+      env: NAME=browser tests
+      install: yarn install
+      script: yarn test:browser
+    - env: NAME=node-tests
+      install: yarn install
+      script: yarn test:node
 
     - stage: floating dependencies
-      env: NAME=floating dependencies
-      install: yarn install --no-lockfile --non-interactive
-      script: yarn test
-    - env: NAME=node-tests
+      env: NAME=browser tests
+      script: yarn test:browser
+    - env: NAME=node tests
       script: yarn test:node
 
     - stage: fastboot tests
