@@ -17,6 +17,19 @@ Install the addon with
 ember install ember-cli-tailwind
 ```
 
+The default blueprint will attempt to modify your application's main style file and add an `@import` line to include Tailwind, but if it doesn't, you can add it manually:
+
+```
+# CSS 
+@import 'tailwind.css';
+
+# SCSS
+@import 'tailwind';
+
+# Less 
+@import (inline) 'tailwind.css';
+```
+
 ## Usage
 
 Once installed, all of [Tailwind's classes](https://tailwindcss.com/docs/what-is-tailwind/) should be available to you.
