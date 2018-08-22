@@ -19,7 +19,9 @@
     "test": "ember test",
     "test:browser": "ember test",
     "test:fastboot": "qunit fastboot-tests",
-    "test:node": "mocha node-tests/**/*-test.js"
+    "test:node": "mocha node-tests/**/*-test.js",
+    "test:test-apps": "cd test-apps/new-addon && yarn test",
+    "prepare": "./scripts/link-them.sh"
   },
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
@@ -58,9 +60,11 @@
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
     "ember-router-service-polyfill": "^1.0.3",
     "ember-source": "~2.18.0",
+    "ember-source-channel-url": "^1.1.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3",
