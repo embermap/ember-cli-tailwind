@@ -13,10 +13,10 @@ export default Component.extend({
   activeState: 'none',
 
   detailStyles: computed('moduleStyle', 'activeResponsiveClass', 'activeState', function() {
-    let moduleStyle = this.get('moduleStyle');
-    let activeResponsiveClass = this.get('activeResponsiveClass');
+    let moduleStyle = this.moduleStyle;
+    let activeResponsiveClass = this.activeResponsiveClass;
     let responsivePrefix = activeResponsiveClass === 'all' ? '' : `${activeResponsiveClass}:`;
-    let activeState = this.get('activeState');
+    let activeState = this.activeState;
     let statePrefix = activeState === 'none' ? '' : `${activeState}:`;
 
     return classesForModuleStyle(moduleStyle).map(cssClass => {
