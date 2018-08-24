@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "ember-cli-babel": "*",
-    "ember-cli-htmlbars": "*",
-    "sample-addon": "*"
+    "sample-addon-with-tailwind": "*",
+    "ember-cli-htmlbars": "*"
   },
   "devDependencies": {
     "broccoli-asset-rev": "*",

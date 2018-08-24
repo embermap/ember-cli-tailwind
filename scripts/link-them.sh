@@ -49,6 +49,6 @@ done
 for package in "sample-addon"; do
     pushd ./test-projects/scenario-2-disabled-styleguide/$package/node_modules > /dev/null
     rm -rf ./sample-addon-with-tailwind
-    ln -s ../../../sample-addon-with-tailwind ./sample-addon-with-tailwind
+    ln -s ../../sample-addon-with-tailwind ./sample-addon-with-tailwind
     popd > /dev/null
 done
