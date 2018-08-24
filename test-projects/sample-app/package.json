@@ -17,6 +17,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "sample-addon": "*",
     "broccoli-asset-rev": "*",
     "ember-ajax": "*",
     "ember-cli": "*",
