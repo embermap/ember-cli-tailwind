@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | Dummy app smoke test');
+moduleForAcceptance('Acceptance | Tailwind config in Addon | Dummy app smoke test');
 
 test(`I can use my addon's Tailwind classes in my addon's dummy app`, async function(assert) {
   await visit('/');

@@ -1,5 +1,5 @@
 #!/bin/bash
  ./scripts/parallel --tag <<EOF
 yarn test:browser
-cd test-apps/basic-addon && yarn test
+cd test-projects/sample-addon && yarn test
 EOF
