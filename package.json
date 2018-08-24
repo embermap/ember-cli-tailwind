@@ -21,7 +21,6 @@
     "test:browser": "ember test",
     "test:fastboot": "qunit fastboot-tests",
     "test:node": "mocha node-tests/**/*-test.js",
-    "test:test-projects": "cd test-projects/new-addon && yarn test",
     "prepare": "./scripts/link-them.sh"
   },
   "dependencies": {

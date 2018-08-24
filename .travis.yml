@@ -38,6 +38,9 @@ jobs:
     - env: NAME=node-tests
       install: yarn install
       script: yarn test:node
+    - env: NAME=test-projects
+      install: yarn install
+      script: yarn test:test-projects
 
     - stage: floating dependencies
       env: NAME=browser tests
