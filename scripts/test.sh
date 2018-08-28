@@ -1,5 +1,8 @@
 #!/bin/bash
- ./scripts/parallel --tag <<EOF
+./scripts/parallel --tag <<EOF
 yarn test:browser
-cd test-projects/sample-addon && yarn test
+cd test-projects/scenario-1-addon-using-tailwind/sample-addon && yarn test
+cd test-projects/scenario-1-addon-using-tailwind/sample-app && yarn test
+cd test-projects/scenario-2-disabled-styleguide/sample-addon && yarn test
+cd test-projects/scenario-2-disabled-styleguide/sample-addon-with-tailwind && yarn test
 EOF
