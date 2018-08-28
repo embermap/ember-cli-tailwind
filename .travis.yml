@@ -75,7 +75,7 @@ jobs:
         provider: npm
         email: sam.selikoff@gmail.com
         api_key:
-          secure: nFJ55O4XenWChMIxeQV+yLjE1sw+lBI7UeHPWr9insyOiNnZF5B2zpv+EKOITwiuXNDhXt1XpzUUgeFzcXHtr3D/8L9hQQf53LP1AQDuv972BNyhgPK/+8XY1aMzgcWJbol4ahj6IQnNYEsgXypSkTTad2+ynP20sVaoSEb+MZZt1i+iYz/g7cDEKDDMj7JpfZD82iuvXgFOMl0x+BimXA7w1q87fZIuiNKaqQtoncZlx9PmCJmluY39AwfMaqxeWEc6zgZhbc4rx9l8+lpQ3zumtbtWyoc+kh0iGlEkvfvwAnHLeGvYAlnwDgxZ1l5j+AlP0OsUC1K8n02N/KJS25SBxmrbcSYEcIU4Td2Xw5hI/MuQ/g/A02czhQSZoGxmFCzgmzYm2Y0m2ctC2z3ZrE+8RgWdIMWVIsZLQ21+4enbLjOV0iNyLw5KFqF2mCNzqrEPDveBdc9eYGCVX+CxNjCGhL6liXceicLDqjdxZLYYP9WwSwz15CSw4Lil8txH9mHwr9iqBYUMJIN4RikoZGg90HScMzTrWeGcp1q3I2z8uuCzDS9bLrrTQz4K2MKZ5JFz24ydoOKsvToIqdJj+dlrn6LoFEq6GYM5HuDevvRp+4O2Q+xB2GSukSHoIfRviYF6rbhy42G17FlXGDzcX1T0xl1JSq7B6wDoUt37zjk=
+          secure: tZ0Ca9sS8lcXIED8QtKwT5kwo4q1jtGoIWVCw9y8Abkwth8CQP4NlY6kgnnoC1hR4qe+2WnNOzH52Ph7USbf4gmeE8FyE1IIZ2IjmedCJB7Q1j7ZOcpbX+hL2RJgAWW1Uoutch3Y8myfHTOFG5SL8oFkf8m89IlX+X1KzB7wXyu8BfQr8eQZwUDQC+UXpJ8kE9gA+6fJmY5Do4wQHxFNgtmhROUhGfPYFc4ysb/TnaJS2fvOSvB78cjcFDlqAHhp3toP3PMFt/N7o/bU9E6eetYwp1bGoMlqfQRCg1YriZ+KcoRHgbbM4XWqveiu27z4mdOJIWUPdCvByvwyftCyZ/AhOHAfboteHX9dcRP6DyMQmt9XHpg5LNt5hjn2dNXgRigKApZOsyXNRzRTM0VnZNxavE+evLVIy6/Od+rb8YkDk2MIX4C/Sjw4EOkwU1LZlrY899g1/1XMOdVMpB0TC4ekFDQeRR7tddMcvXSjZ9QDFpCzdJkYQx5e+isqr1XaaZt0dcLYqcbPPXd7P5gWVh+gB2siIHQcQKeBslRTW8YjkL025WoXkAVymvPlZFkanXwiPNVXp6a5xVpwSKzsvwawpg/7V0MzxzqKANexQ6/X3ETbBNnnh29OaVuuN2NXR4UG+CZhcT/eNDhoUMyaHZuBcDYJql5jOuq22VloSH0=
         on:
           tags: true
           repo: embermap/ember-cli-tailwind
