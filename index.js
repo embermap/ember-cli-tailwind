@@ -44,7 +44,7 @@ module.exports = {
       buildTarget = 'app';
     } else if (fs.existsSync(includer.root + '/addon/tailwind')) {
       buildTarget = 'addon';
-    } else if (fs.existsSync(includer.root + '/tests/dummy/app/tailwind')) {
+    } else if (includer.name === "dummy" && fs.existsSync(process.cwd() + '/tests/dummy/app/tailwind')) {
       buildTarget = 'dummy';
     }
 
