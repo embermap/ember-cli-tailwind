@@ -45,6 +45,8 @@ jobs:
       script: yarn test:browser
     - env: NAME=node tests
       script: yarn test:node
+    - env: NAME=test-projects
+      script: yarn test:test-projects
 
     - stage: fastboot tests
       env: NAME=fastboot tests
