@@ -53,9 +53,7 @@ jobs:
       script: yarn test:fastboot
 
     - stage: versioned tests
-      env: EMBER_TRY_SCENARIO=ember-lts-2.8
-      script: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
-    - env: EMBER_TRY_SCENARIO=ember-lts-2.12
+      env: EMBER_TRY_SCENARIO=ember-lts-2.12
       script: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
     - env: EMBER_TRY_SCENARIO=ember-lts-2.16
       script: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
