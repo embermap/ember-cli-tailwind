@@ -40,9 +40,7 @@ module.exports = {
     }
 
     let buildTarget;
-    console.log(includer.pkg);
-    console.log(includer.name);
-    if (fs.existsSync(includer.root + '/app/tailwind')) {
+    if (fs.existsSync(!this.project.isEmberCLIAddon() && this.project.root + '/app/tailwind')) {
       buildTarget = 'app';
     } else if (fs.existsSync(includer.root + '/addon/tailwind')) {
       buildTarget = 'addon';
