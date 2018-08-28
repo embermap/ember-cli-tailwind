@@ -4,6 +4,8 @@ let EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 let _ = require('lodash');
 
 describe('import files', function() {
+  this.timeout(10000);
+
   afterEach(() => {
     delete process.env.EMBER_ENV;
   });

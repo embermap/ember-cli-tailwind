@@ -40,11 +40,11 @@ module.exports = {
     }
 
     let buildTarget;
-    if (fs.existsSync(includer.project.root + '/app/tailwind')) {
+    if (fs.existsSync(!this.project.isEmberCLIAddon() && this.project.root + '/app/tailwind')) {
       buildTarget = 'app';
-    } else if (fs.existsSync(includer.project.root + '/addon/tailwind')) {
+    } else if (fs.existsSync(includer.root + '/addon/tailwind')) {
       buildTarget = 'addon';
-    } else if (fs.existsSync(includer.project.root + '/tests/dummy/app/tailwind')) {
+    } else if (includer.name === "dummy" && fs.existsSync(process.cwd() + '/tests/dummy/app/tailwind')) {
       buildTarget = 'dummy';
     }
 
@@ -87,7 +87,7 @@ module.exports = {
   },
 
   _shouldIncludeStyleguide() {
-    let envConfig = this.project.config(process.env.EMBER_ENV)[this.name];
+    let envConfig = this.parent.config(process.env.EMBER_ENV)[this.name];
     let shouldOverrideDefault = envConfig !== undefined && envConfig.shouldIncludeStyleguide !== undefined;
     return shouldOverrideDefault ? envConfig.shouldIncludeStyleguide : process.env.EMBER_ENV !== 'production';
   },
@@ -140,7 +140,7 @@ module.exports = {
     // tailwind in both their addon and dummy app.
     if (!buildTarget) {
       if (!this._isAddon()) {
-        this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
+        this.ui.writeWarnLine('No build target was detected for ember-cli-tailwind. Tailwind is not being included in your project.')
       }
       return false;
     }

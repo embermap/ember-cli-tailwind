@@ -11,12 +11,12 @@ export default Component.extend({
   moduleStyle: null,
 
   classesForModuleStyle: computed('moduleStyle', function() {
-    return classesForModuleStyle(this.get('moduleStyle'));
+    return classesForModuleStyle(this.moduleStyle);
   }),
 
   actions: {
     selectModuleStyle() {
-      this.get('etwTailwindStyleguide').set('selectedModuleStyle', this.get('moduleStyle'));
+      this.etwTailwindStyleguide.set('selectedModuleStyle', this.moduleStyle);
     }
   }
 
