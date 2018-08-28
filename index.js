@@ -40,6 +40,8 @@ module.exports = {
     }
 
     let buildTarget;
+    console.log(includer.pkg);
+    console.log(includer.name);
     if (fs.existsSync(includer.root + '/app/tailwind')) {
       buildTarget = 'app';
     } else if (fs.existsSync(includer.root + '/addon/tailwind')) {
@@ -140,7 +142,7 @@ module.exports = {
     // tailwind in both their addon and dummy app.
     if (!buildTarget) {
       if (!this._isAddon()) {
-        this.ui.writeWarnLine('You must specify a buildTarget using an ember-cli-tailwind config object in your app or addon.')
+        this.ui.writeWarnLine('No build target was detected for ember-cli-tailwind. Tailwind is not being included in your project.')
       }
       return false;
     }
