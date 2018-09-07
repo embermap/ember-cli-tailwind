@@ -15,6 +15,7 @@
 */
 
 export default {
+  'white': 'white',
   'brand': '#E04E39',
-  'white': 'white'
+  'secondary': 'blue'
 };

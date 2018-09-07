@@ -111,7 +111,7 @@ module.exports = {
   },
 
   _buildTailwind() {
-    let basePath = this.projectType === 'app' ? 'app/styles' : '';
+    let basePath = this.projectType === 'app' ? 'app/styles' : 'addon/styles';
     let tailwindConfig = new Rollup(this.tailwindInputPath, {
       rollup: {
         input: 'config/tailwind.js',
