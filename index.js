@@ -4,9 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const Funnel = require('broccoli-funnel');
 const Rollup = require('broccoli-rollup');
+const Merge = require('broccoli-merge-trees');
 const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
+const debugTree = require('broccoli-debug').buildDebugCallback(`ember-cli-tailwind:${this.name}`);
 
 const buildDestinations = {
   dummy: {
@@ -62,16 +64,24 @@ module.exports = {
     this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
   },
 
-  treeForStyles() {
+  treeForStyles(tree) {
+    let trees = tree ? [ tree ] : [];
+
     if (this.projectType === 'app' && this._hasTailwindConfig()) {
-      return this._buildTailwind();
+      trees.push(this._buildTailwind());
     }
+
+    return new Merge(trees);
   },
 
-  treeForAddonStyles() {
+  treeForAddonStyles(tree) {
+    let trees = tree ? [ tree ] : [];
+
     if (this.projectType === 'addon' && this._hasTailwindConfig()) {
-      return this._buildTailwind();
+      trees.push(this._buildTailwind());
     }
+
+    return new Merge(trees);
   },
 
   treeForApp(tree) {
@@ -83,7 +93,7 @@ module.exports = {
       });
     }
 
-    return appTree;
+    return debugTree(appTree);
   },
 
   _shouldIncludeStyleguide() {
@@ -128,7 +138,10 @@ module.exports = {
 
     return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
       srcFile: path.join('modules.css'),
-      destFile: path.join(basePath, 'tailwind.css')
+      destFile: path.join(basePath, 'tailwind.css'),
+      didBuild: tailwindOuputFile => {
+        this.tailwindOutputFile = tailwindOuputFile;
+      }
     });
   },
 
