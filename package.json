@@ -33,7 +33,7 @@
     "ember-cli-clipboard": "^0.8.1",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-string-utils": "^1.1.0",
-    "ember-cli-sass": "^8.0.1",
+    "ember-cli-sass": "7.1.7",
     "ember-composable-helpers": "^2.1.0",
     "ember-truth-helpers": "^2.0.0",
     "fixturify": "^0.3.4",
@@ -74,8 +74,7 @@
     "eslint-plugin-node": "^6.0.1",
     "loader.js": "^4.2.3",
     "mocha": "^5.1.1",
-    "qunit-dom": "^0.6.2",
-    "sass": "^1.13.2"
+    "qunit-dom": "^0.6.2"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

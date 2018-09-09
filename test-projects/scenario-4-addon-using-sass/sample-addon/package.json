@@ -50,8 +50,7 @@
     "ember-try": "*",
     "eslint-plugin-ember": "*",
     "eslint-plugin-node": "*",
-    "loader.js": "*",
-    "sass": "*"
+    "loader.js": "*"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
