@@ -30,6 +30,10 @@ const validBuildTargets = Object.keys(buildDestinations);
 module.exports = {
   name: 'ember-cli-tailwind',
 
+  isDevelopingAddon() {
+    return true;
+  },
+
   included(includer) {
     this._super.included.apply(this, arguments);
 
