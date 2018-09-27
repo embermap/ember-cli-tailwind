@@ -6,4 +6,5 @@ cd test-projects/scenario-2-addon-using-tailwind/sample-addon && yarn test
 cd test-projects/scenario-2-addon-using-tailwind/sample-app && yarn test
 cd test-projects/scenario-3-disabled-styleguide/sample-addon && yarn test
 cd test-projects/scenario-3-disabled-styleguide/sample-addon-with-tailwind && yarn test
+cd test-projects/scenario-4-addon-using-sass/sample-addon && yarn test
 EOF

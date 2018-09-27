@@ -15,6 +15,7 @@ bower.json
 ember-cli-build.js
 testem.js
 yarn.lock
+DEBUG
 
 # ember-try
 .node_modules.ember-try/
