@@ -96,3 +96,57 @@ Ember CLI Tailwind ships with a styleguide that can be added to the host applica
 The config option `ENV['ember-cli-tailwind'].shouldIncludeStyleguide` determines whether this styleguide is included. By default, it is `false` in the `production` environment, and `true` otherwise.
 
 You can overwrite it to change this default behavior.
+
+## Advanced usage
+
+### `copy-tailwind-build-plugin`
+
+Ember CLI Tailwind comes with a Broccoli plugin you can use when you want more control over how to work with the built `tailwind.css` file.
+
+The broccoli plugin is in the `lib` directory and can be `require`'d in node:
+
+```js
+const CopyTailwindBuildPlugin = require('ember-cli-tailwind/lib/copy-tailwind-build-plugin');
+```
+
+For example, you might be building a UI component library as an Ember Addon. You want your component library to use Ember CLI Tailwind, but you'd like to explicitly `@import` the built `tailwind.css` file in your component library's `addon.scss` so that you can write other CSS classes that `@extend` Tailwind's classes. Here's what that would look like:
+
+```js
+// index.js
+const CopyTailwindBuildPlugin = require('ember-cli-tailwind/lib/copy-tailwind-build-plugin');
+
+// snip
+treeForAddonStyles(tree) {
+  let trees = tree ? [ tree ] : [];
+  
+  trees.push(new CopyTailwindBuildPlugin([ tree ], this));
+  
+  return new MergeTrees(trees);
+}
+```
+
+```scss
+// addon/styles/addon.scss
+@import 'tailwind';
+
+body {
+  @extend .antialiased;
+  @extend .font-sans;
+  @extend .text-grey-darkest;
+}
+```
+
+As another example, you could even pass Sass variables to be used when building your `tailwind.css` file, since you can set those variables before `@import`'ing Tailwind:
+
+```js
+// tailwind/config/colors.js
+
+export default {
+  brand: '$brand'
+}
+```
+
+```scss
+$brand: '#3490DC';
+@import 'tailwind';
+```
