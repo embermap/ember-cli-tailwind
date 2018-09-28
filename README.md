@@ -97,32 +97,70 @@ The config option `ENV['ember-cli-tailwind'].shouldIncludeStyleguide` determines
 
 You can overwrite it to change this default behavior.
 
-## Advanced usage
+## Advanced addon usage
 
-### `copy-tailwind-build-plugin`
+### `build-tailwind` and the `shouldBuildTailwind` option
 
-Ember CLI Tailwind comes with a Broccoli plugin you can use when you want more control over how to work with the built `tailwind.css` file.
+Ember CLI Tailwind comes with a function you can use when you want more control over how to work with the built `tailwind.css` file.
 
-The broccoli plugin is in the `lib` directory and can be `require`'d in node:
+The function is in the `lib` directory and can be `require`'d in node:
 
 ```js
-const CopyTailwindBuildPlugin = require('ember-cli-tailwind/lib/copy-tailwind-build-plugin');
+const buildTailwind = require('ember-cli-tailwind/lib/build-tailwind');
 ```
 
-For example, you might be building a UI component library as an Ember Addon. You want your component library to use Ember CLI Tailwind, but you'd like to explicitly `@import` the built `tailwind.css` file in your component library's `addon.scss` so that you can write other CSS classes that `@extend` Tailwind's classes. Here's what that would look like:
+To use the function, pass in your addon instance (usually `this` if you're working in a hook in `index.js`):
+
+```js
+let tailwind = buildTailwind(this);
+```
+
+The return value is a Broccoli tree, and thus can be used in different `treeFor` hooks to end up in your build.
+
+If you're using this, you probably also want to disable Ember CLI Tailwind's default behavior, which will concat the built `tailwind.css` file into your addon's generated `vendor.css` file – otherwise you could end up with two versions of Tailwind in your CSS.
+
+You can do that using the `shouldBuildTailwind` config option:
 
 ```js
 // index.js
-const CopyTailwindBuildPlugin = require('ember-cli-tailwind/lib/copy-tailwind-build-plugin');
-
-// snip
-treeForAddonStyles(tree) {
-  let trees = tree ? [ tree ] : [];
+module.exports = {
+  name: 'your-addon',
   
-  trees.push(new CopyTailwindBuildPlugin([ tree ], this));
-  
-  return new MergeTrees(trees);
+  options: {
+    'ember-cli-tailwind': {
+      shouldBuildTailwind: false
+    }
+  }
 }
+```
+
+Now you are responsible for calling `buildTailwind` and ensuring the resulting tree ends up in your output.
+
+As an example of how you might use this, say you're building a UI component library as an Ember Addon. You want your component library to use Ember CLI Tailwind, but you're using Sass, and you'd like to explicitly `@import` the built `tailwind.css` file in your component library so that you can write other CSS classes that `@extend` Tailwind's classes.
+
+Here's what that would look like:
+
+```js
+// index.js
+const buildTailwind = require('ember-cli-tailwind/lib/build-tailwind');
+
+module.exports = {
+  name: 'your-addon',
+  
+  options: {
+    'ember-cli-tailwind': {
+      shouldBuildTailwind: false
+    }
+  },
+
+  treeForAddonStyles(tree) {
+    let trees = tree ? [ tree ] : [];
+  
+    trees.push(buildTailwind(this));
+  
+    return new MergeTrees(trees);
+  }
+};
 ```
 
 ```scss
@@ -136,7 +174,7 @@ body {
 }
 ```
 
-As another example, you could even pass Sass variables to be used when building your `tailwind.css` file, since you can set those variables before `@import`'ing Tailwind:
+You could now even pass Sass variables as Tailwind, since you can set those variables before `@import`'ing Tailwind:
 
 ```js
 // tailwind/config/colors.js
