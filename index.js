@@ -3,11 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const Funnel = require('broccoli-funnel');
-const Rollup = require('broccoli-rollup');
 const Merge = require('broccoli-merge-trees');
-const BuildTailwindPlugin = require('./lib/build-tailwind-plugin');
-const resolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
+const buildTailwind = require('./lib/build-tailwind');
+const mv = require('broccoli-stew').mv;
 const debugTree = require('broccoli-debug').buildDebugCallback(`ember-cli-tailwind:${this.name}`);
 
 const buildDestinations = {
@@ -71,21 +69,21 @@ module.exports = {
   treeForStyles(tree) {
     let trees = tree ? [ tree ] : [];
 
-    if (this.projectType === 'app' && this._hasTailwindConfig()) {
-      trees.push(this._buildTailwind());
+    if (this.projectType === 'app' && this._hasTailwindConfig() && this._shouldBuildTailwind()) {
+      trees.push(mv(buildTailwind(this), 'app/styles'));
     }
 
-    return new Merge(trees);
+    return debugTree(new Merge(trees), 'tree-for-styles');
   },
 
   treeForAddonStyles(tree) {
     let trees = tree ? [ tree ] : [];
 
-    if (this.projectType === 'addon' && this._hasTailwindConfig()) {
-      trees.push(this._buildTailwind());
+    if (this.projectType === 'addon' && this._hasTailwindConfig() && this._shouldBuildTailwind()) {
+      trees.push(mv(buildTailwind(this), 'addon/styles'));
     }
 
-    return new Merge(trees);
+    return debugTree(new Merge(trees), 'tree-for-addon-styles');
   },
 
   treeForApp(tree) {
@@ -97,7 +95,7 @@ module.exports = {
       });
     }
 
-    return debugTree(appTree);
+    return debugTree(appTree, 'tree-for-app');
   },
 
   _shouldIncludeStyleguide() {
@@ -124,29 +122,10 @@ module.exports = {
     return this.tailwindInputPath;
   },
 
-  _buildTailwind() {
-    let basePath = this.projectType === 'app' ? 'app/styles' : 'addon/styles';
-    let tailwindConfig = new Rollup(this.tailwindInputPath, {
-      rollup: {
-        input: 'config/tailwind.js',
-        output: {
-          file: 'tailwind-config.js',
-          format: 'cjs'
-        },
-        plugins: [
-          resolve(),
-          commonjs()
-        ]
-      }
-    });
+  _shouldBuildTailwind() {
+    let shouldBuildTailwind = this._config().shouldBuildTailwind;
 
-    return new BuildTailwindPlugin([this.tailwindInputPath, tailwindConfig], {
-      srcFile: path.join('modules.css'),
-      destFile: path.join(basePath, 'tailwind.css'),
-      didBuild: tailwindOuputFile => {
-        this.tailwindOutputFile = tailwindOuputFile;
-      }
-    });
+    return (shouldBuildTailwind !== undefined) ? shouldBuildTailwind : true;
   },
 
   _validateBuildTarget(buildTarget) {
@@ -189,5 +168,9 @@ module.exports = {
     let deps = this.parent.pkg.dependencies;
 
     return deps && Object.keys(deps).includes(this.name);
+  },
+
+  _config() {
+    return this.parent.config(process.env.EMBER_ENV)[this.name] || {};
   }
 };
