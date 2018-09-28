@@ -153,10 +153,12 @@ const buildTailwind = require('ember-cli-tailwind/lib/build-tailwind');
 module.exports = {
   name: 'your-addon',
   
-  options: {
-    'ember-cli-tailwind': {
-      shouldBuildTailwind: false
-    }
+  config() {
+    return {
+      'ember-cli-tailwind': {
+        shouldBuildTailwind: false
+      }
+    };
   },
 
   treeForAddonStyles(tree) {
@@ -169,6 +171,8 @@ module.exports = {
 };
 ```
 
+Now that the built `tailwind.css` file is in your Addon's style tree, you can import it in other Sass files:
+
 ```scss
 // addon/styles/addon.scss
 @import 'tailwind';
@@ -180,7 +184,7 @@ body {
 }
 ```
 
-You could now even pass Sass variables as Tailwind, since you can set those variables before `@import`'ing Tailwind:
+You could even use Sass variables inside of Tailwind's config, since you can set those variables before `@import`'ing Tailwind:
 
 ```js
 // tailwind/config/colors.js
