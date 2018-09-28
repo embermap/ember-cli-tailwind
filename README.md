@@ -32,7 +32,7 @@ The default blueprint will attempt to modify your application's main style file 
 @import (inline) 'tailwind.css';
 ```
 
-**Apps**
+**Addons**
 
 Install the addon with
 
