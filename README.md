@@ -11,6 +11,8 @@ It comes with a styleguide route (`/tailwind`) that displays all your configured
 
 ## Installation
 
+**Apps**
+
 Install the addon with
 
 ```sh
@@ -29,6 +31,16 @@ The default blueprint will attempt to modify your application's main style file 
 # Less 
 @import (inline) 'tailwind.css';
 ```
+
+**Apps**
+
+Install the addon with
+
+```sh
+ember install ember-cli-tailwind
+```
+
+then make sure `ember-cli-tailwind` is in your addon's `dependences` (NOT `devDependencies`).
 
 ## Usage
 
