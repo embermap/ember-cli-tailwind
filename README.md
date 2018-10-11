@@ -148,6 +148,7 @@ Here's what that would look like:
 
 ```js
 // index.js
+const MergeTrees = require('broccoli-merge-trees');
 const buildTailwind = require('ember-cli-tailwind/lib/build-tailwind');
 
 module.exports = {
