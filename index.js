@@ -62,6 +62,8 @@ module.exports = {
       this.import('vendor/etw.css');
     }
 
+    this.outputFile = this._getOutputFileName();
+
     this.projectType = buildConfig.type;
     this.tailwindInputPath = this._getInputPath(this.parent.root, buildConfig.path);
   },
@@ -124,8 +126,12 @@ module.exports = {
 
   _shouldBuildTailwind() {
     let shouldBuildTailwind = this._config().shouldBuildTailwind;
-
     return (shouldBuildTailwind !== undefined) ? shouldBuildTailwind : true;
+  },
+
+  _getOutputFileName() {
+    let customOutputFileName = this._config().outputFileName;
+    return (customOutputFileName !== undefined) ? customOutputFileName : 'tailwind.css';
   },
 
   _validateBuildTarget(buildTarget) {
