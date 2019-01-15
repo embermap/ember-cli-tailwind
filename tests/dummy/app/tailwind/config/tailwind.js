@@ -57,6 +57,26 @@ export default {
   svgFill,
   svgStroke,
 
+  /*
+  |-----------------------------------------------------------------------------
+  | Modules                  https://tailwindcss.com/docs/configuration#modules
+  |-----------------------------------------------------------------------------
+  |
+  | Here is where you control which modules are generated and what variants are
+  | generated for each of those modules.
+  |
+  | Currently supported variants:
+  |   - responsive
+  |   - hover
+  |   - focus
+  |   - focus-within
+  |   - active
+  |   - group-hover
+  |
+  | To disable a module completely, use `false` instead of an array.
+  |
+  */
+
   modules: {
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
@@ -84,6 +104,8 @@ export default {
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
+    objectFit: false,
+    objectPosition: false,
     opacity: ['responsive'],
     outline: ['focus'],
     overflow: ['responsive'],
@@ -94,6 +116,7 @@ export default {
     shadows: ['responsive', 'hover', 'focus'],
     svgFill: [],
     svgStroke: [],
+    tableLayout: ['responsive'],
     textAlign: ['responsive'],
     textColors: ['responsive', 'hover', 'focus'],
     textSizes: ['responsive'],
@@ -104,7 +127,7 @@ export default {
     visibility: ['responsive'],
     whitespace: ['responsive'],
     width: ['responsive'],
-    zIndex: ['responsive']
+    zIndex: ['responsive'],
   },
 
   /*
@@ -141,6 +164,6 @@ export default {
   options: {
     prefix: '',
     important: false,
-    separator: ':'
-  }
+    separator: ':',
+  },
 };

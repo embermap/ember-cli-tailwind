@@ -11,13 +11,14 @@
 | a good idea to put it first so other values are able to override it.
 |
 | Class name: .rounded{-side?}{-size?}
+| CSS property: border-radius
 |
 */
 
 export default {
-  none: '0',
-  sm: '.125rem',
+  'none': '0',
+  'sm': '.125rem',
   default: '.25rem',
-  lg: '.5rem',
-  full: '9999px'
+  'lg': '.5rem',
+  'full': '9999px',
 };

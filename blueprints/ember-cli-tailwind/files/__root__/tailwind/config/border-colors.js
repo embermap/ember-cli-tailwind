@@ -14,6 +14,7 @@ import colors from './colors';
 | specify a border color.
 |
 | Class name: .border-{color}
+| CSS property: border-color
 |
 */
 

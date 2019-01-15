@@ -8,6 +8,7 @@
 | values as needed.
 |
 | Class name: .opacity-{name}
+| CSS property: opacity
 |
 */
 
@@ -16,5 +17,5 @@ export default {
   '25': '.25',
   '50': '.5',
   '75': '.75',
-  '100': '1'
+  '100': '1',
 };

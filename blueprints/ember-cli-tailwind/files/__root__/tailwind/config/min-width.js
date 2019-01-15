@@ -9,10 +9,11 @@
 | these values as needed.
 |
 | Class name: .min-w-{size}
+| CSS property: min-width
 |
 */
 
 export default {
   '0': '0',
-  full: '100%'
+  'full': '100%',
 };
