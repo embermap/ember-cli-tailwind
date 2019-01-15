@@ -9,9 +9,10 @@
 | keep the generated CSS file size down.
 |
 | Class name: .stroke-{name}
+| CSS property: stroke
 |
 */
 
 export default {
-  current: 'currentColor'
+  'current': 'currentColor',
 };

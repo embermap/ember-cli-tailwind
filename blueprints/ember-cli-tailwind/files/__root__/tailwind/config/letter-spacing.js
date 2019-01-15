@@ -7,11 +7,12 @@
 | them in Tailwind, tracking.
 |
 | Class name: .tracking-{size}
+| CSS property: letter-spacing
 |
 */
 
 export default {
-  tight: '-0.05em',
-  normal: '0',
-  wide: '0.05em'
+  'tight': '-0.05em',
+  'normal': '0',
+  'wide': '0.05em',
 };

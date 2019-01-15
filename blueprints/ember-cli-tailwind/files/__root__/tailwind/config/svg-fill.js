@@ -9,9 +9,10 @@
 | generated CSS file size down.
 |
 | Class name: .fill-{name}
+| CSS property: fill
 |
 */
 
 export default {
-  current: 'currentColor'
+  'current': 'currentColor',
 };

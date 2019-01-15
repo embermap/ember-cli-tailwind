@@ -9,10 +9,11 @@
 | these values as needed.
 |
 | Class name: .max-h-{size}
+| CSS property: max-height
 |
 */
 
 export default {
-  full: '100%',
-  screen: '100vh'
+  'full': '100%',
+  'screen': '100vh',
 };

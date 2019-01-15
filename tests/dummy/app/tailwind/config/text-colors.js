@@ -10,6 +10,7 @@ import colors from './colors';
 | independently if that makes sense for your project.
 |
 | Class name: .text-{color}
+| CSS property: color
 |
 */
 

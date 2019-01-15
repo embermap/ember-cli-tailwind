@@ -10,6 +10,7 @@ import colors from './colors';
 | these independently if that makes sense for your project.
 |
 | Class name: .bg-{color}
+| CSS property: background-color
 |
 */
 
