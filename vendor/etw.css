@@ -546,7 +546,6 @@ ul {
  * Tailwind custom reset styles
  */
 
-/**
 *,
 *::before,
 *::after {
@@ -554,7 +553,6 @@ ul {
   border-style: solid;
   border-color: #dae1e7;
 }
-**/
 
 /**
  * Temporary reset for a change introduced in Chrome 62 but now reverted.
