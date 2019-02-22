@@ -3301,7 +3301,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.4.3:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.4.3.tgz#1ff35ffd54c6206d72635686f4e5bb1674c9eae5"
   integrity sha512-jTAYz38q+iGXwMVTMQhYVHp//7NGJCvDOqFcn/pzozn+KU34Cvmlyi8MJBucKOA+t+khY8DSFz7jE667U993nA==
