@@ -41,7 +41,7 @@
     "postcss": "^6.0.20",
     "postcss-easy-import": "^3.0.0",
     "rollup-plugin-commonjs": "^8.3.0",
-    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
     "tailwindcss": "^0.7.3"
   },
   "devDependencies": {
