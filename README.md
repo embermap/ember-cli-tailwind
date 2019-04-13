@@ -34,7 +34,7 @@ The default blueprint will attempt to modify your application's main style file 
 
 **Addons**
 
-Make sure `ember-cli-tailwind` is in your addon's `dependences` (NOT `devDependencies`).
+Make sure `ember-cli-tailwind` is in your addon's `dependencies` (NOT `devDependencies`).
 
 ## Usage
 
