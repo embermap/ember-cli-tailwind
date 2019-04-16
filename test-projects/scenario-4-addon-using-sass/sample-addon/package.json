@@ -24,7 +24,6 @@
     "ember-cli-tailwind": "*",
     "ember-cli-htmlbars": "*",
     "ember-cli-sass": "*",
-    "broccoli-plugin": "*",
     "broccoli-merge-trees": "*",
     "fs-extra": "*"
   },
