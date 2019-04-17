@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-tailwind",
   "version": "0.7.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Use Tailwind CSS in Ember.js",
   "keywords": [
     "ember-addon"
   ],
