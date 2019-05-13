@@ -37,7 +37,7 @@
     "ember-cli-string-utils": "^1.1.0",
     "ember-composable-helpers": "^2.3.1",
     "ember-truth-helpers": "^2.0.0",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^8.0.0",
     "postcss": "^7.0.16",
     "postcss-easy-import": "^3.0.0",
     "rollup-plugin-commonjs": "^8.3.0",
