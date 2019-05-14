@@ -42,7 +42,7 @@
     "postcss-easy-import": "^3.0.0",
     "rollup-plugin-commonjs": "^8.3.0",
     "rollup-plugin-node-resolve": "^4.2.4",
-    "tailwindcss": "^0.7.3"
+    "tailwindcss": "^1.0.1"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^3.0.0",
