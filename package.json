@@ -56,7 +56,7 @@
     "ember-cli-htmlbars-inline-precompile": "^2.1.0",
     "ember-cli-inject-live-reload": "^2.0.1",
     "ember-cli-qunit": "^4.3.2",
-    "ember-cli-sass": "7.1.7",
+    "ember-cli-sass": "^10.0.1",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^3.0.0",
@@ -75,7 +75,8 @@
     "jsdom": "^15.1.0",
     "loader.js": "^4.2.3",
     "mocha": "^6.1.4",
-    "qunit-dom": "^0.8.5"
+    "qunit-dom": "^0.8.5",
+    "sass": "^1.20.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
