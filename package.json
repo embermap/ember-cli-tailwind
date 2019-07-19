@@ -74,7 +74,7 @@
     "fixturify": "^1.0.1",
     "jsdom": "^15.1.1",
     "loader.js": "^4.2.3",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "qunit-dom": "^0.9.0"
   },
   "engines": {
