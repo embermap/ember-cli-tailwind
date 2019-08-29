@@ -3,6 +3,32 @@
 [![npm version](https://img.shields.io/npm/v/ember-cli-tailwind.svg?style=flat-square)](http://badge.fury.io/js/ember-cli-tailwind)
 [![Build Status](https://img.shields.io/travis/embermap/ember-cli-tailwind/master.svg?style=flat-square)](https://travis-ci.org/embermap/ember-cli-tailwind)
 
+---
+
+**Update: This library is deprecated**
+
+Aug 29, 2019
+
+Hey everyone! I wanted to write an update for folks using and coming across this library. I've decided to deprecate it.
+
+I built ember-cli-tailwind because I wanted a one-liner to get Tailwind wired up with rebuilds in an Ember app. To do this, I had the addon configure PostCSS behind the scenes, basically so PostCSS was an implementation detail from the perspective of the user.
+
+This has caused problems over the life of this library, as many people reasonably want to be able to configure PostCSS themselves, for example to add Autoprefixer or PurgeCSS.
+
+As of today I can't think of a great way to write this addon so that it sets everything up in a way that it's a significant value-add compared with teaching folks how to use ember-cli-postcss to set up Tailwind themselves.
+
+This addon also scaffolded out the Tailwind config into separate files, which was really a personal preference and a design decision I felt aligned with the Ember community. In v1.0 Tailwind took more responsibility for the config, and now the intended way to use Tailwind is to use an empty config, and only override values as needed. This means relying more on the official Tailwind docs and less on your complete customized set of values. This has several benefits, the main one being that Tailwind has taken more ownership of carefully setting values that work for many situations. In any case, if the larger Tailwind community is using Tailwind in this way, I think it's important for Ember users to be doing the same thing.
+
+In general, I think it's good for Ember users to move away from needing custom ember-* packages, and instead getting closer to the underlying libraries and referencing their official documentation as fast as possible. Tools like Ember Auto Import allow us to easily do this. That makes libraires like this one less and less of a good idea. The reality is it's not the best use of time and resources to maintain addons like this that are always chasing their underlying libraries. Light wrappers that wire up file system watchers can make sense, but in this case, using ember-cli-postcss and wiring things up should be straightforward enough for most users.
+
+[chrism has put together a great guide on installing Tailwind into an Ember app](https://github.com/chrism/emberjs-tailwind-purgecss). It's a great reference which should help you migrate away from this addon.
+
+Hopefully this update brings some clarity! The library has effectively been deprecated for several months as I've not been working on it. Teaching Ember users how to use PostCSS so they have direct control over their Tailwind versions & other PostCSS plugins is going to be a far more sustainable path going forward.
+
+Sam Selikoff
+
+---
+
 Ember CLI Tailwind adds [Tailwind CSS](https://tailwindcss.com) to your app or addon. It also lets you configure every aspect of Tailwind that's designed to be configured, from the configuration values driving the utility classes, to defining new utility classes or components.
 
 It comes with a styleguide route (`/tailwind`) that displays all your configured styles:
