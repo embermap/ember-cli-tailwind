@@ -27,6 +27,8 @@ Hopefully this update brings some clarity! The library has effectively been depr
 
 Sam Selikoff
 
+P.S. I made a free video on removing ember-cli-tailwind from EmberMap's codebase: <https://embermap.com/video/using-postcss-and-tailwind>
+
 ---
 
 Ember CLI Tailwind adds [Tailwind CSS](https://tailwindcss.com) to your app or addon. It also lets you configure every aspect of Tailwind that's designed to be configured, from the configuration values driving the utility classes, to defining new utility classes or components.
